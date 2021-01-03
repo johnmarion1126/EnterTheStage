@@ -1,2 +1,2 @@
 # Practice Jam
-A small Unity project to practice 3D development.
+A small Unity project to practice 2D development.
