@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     
-    public float moveSpeed = 5f; 
     public Rigidbody2D rigidBody;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
+    public float moveSpeed = 5f; 
+    private bool inAction = false;
 
     Vector2 movement;
 
@@ -22,30 +23,37 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        if (movement.x == 1) {
-            animator.Play("HeroWalk");
-            spriteRenderer.flipX = false;
-        }
-        else if (movement.x == -1) {
-            animator.Play("HeroWalk");
-            spriteRenderer.flipX = true;
-        }
-        else if (Input.GetKey("z")) {
-            animator.Play("HeroPunch");
-            Debug.Log("Punch");
-        }
-        else if (Input.GetKey("x")) {
-            animator.Play("HeroJab");
-            Debug.Log("Jab");
-        }
-        else {
-            animator.Play("HeroIdle");
-        }
+        if (!inAction) {
 
+            if (movement.x == 1) {
+                animator.Play("HeroWalk");
+                spriteRenderer.flipX = false;
+            }
+            else if (movement.x == -1) {
+                animator.Play("HeroWalk");
+                spriteRenderer.flipX = true;
+            }
+            else {
+                animator.Play("HeroIdle");
+            }
+
+            if (Input.GetKey("z")) {
+                StartCoroutine(heroAction("HeroPunch"));
+            }
+            if (Input.GetKey("x")) {
+                StartCoroutine(heroAction("HeroJab"));
+            }
+
+            rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        }  
     }
 
-    void FixedUpdate() {
-        rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+    IEnumerator heroAction(string action) {
+        inAction = true;
+        animator.Play(action);
+        yield return new WaitForSeconds(0.5f);
+        inAction = false;
     }
-    
+ 
 }
