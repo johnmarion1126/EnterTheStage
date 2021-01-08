@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 1765557058}
   - component: {fileID: 1765557057}
   - component: {fileID: 1765557056}
+  - component: {fileID: 1765557060}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -320,7 +321,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rb: {fileID: 1765557057}
+  rigidBody: {fileID: 1765557057}
+  animator: {fileID: 1765557060}
+  spriteRenderer: {fileID: 1765557058}
 --- !u!50 &1765557057
 Rigidbody2D:
   serializedVersion: 4
@@ -407,3 +410,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1765557060
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765557055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5581cfea4965284f975faa96add21f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
