@@ -25,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (!inAction) {
 
-            if (movement.x == 1) {
+            if (movement.y != 0) {
+                animator.Play("HeroWalk");
+            }
+            else if (movement.x == 1) {
                 animator.Play("HeroWalk");
                 spriteRenderer.flipX = false;
             }
@@ -45,14 +48,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
             rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
-
         }  
     }
 
     IEnumerator heroAction(string action) {
         inAction = true;
         animator.Play(action);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         inAction = false;
     }
  
