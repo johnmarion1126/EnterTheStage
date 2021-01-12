@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     public float moveEnemySpeed = 2f;
     private bool inAction = false;
-    private int randomInt;
+    private bool inRange = false;
 
     void Start() {
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
@@ -26,6 +26,13 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movement = direction;
+
+        if (inRange && !inAction) {
+            inAction = true;
+            rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
+            StartCoroutine(attackPlayer());
+        }
+        
     }
 
     private void FixedUpdate() {
@@ -44,27 +51,30 @@ public class EnemyMovement : MonoBehaviour
         rigidbodyEnemy.MovePosition((Vector2)transform.position + (Vector2)(direction * moveEnemySpeed * Time.deltaTime));
     }
 
-    IEnumerator OnTriggerEnter2D(Collider2D playerObject) {
+    void OnTriggerEnter2D(Collider2D playerObject) {
+        inRange = true;
+    }
 
-        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
-        inAction = true;
+    void OnTriggerExit2D(Collider2D playerObject) {
+        inRange = false;
+    }
 
-        for (int i = 0; i < 3; i++) {
+    IEnumerator attackPlayer() {
 
-            if (Random.Range(1,3) == 1) {
-                animatorEnemy.Play("BasicEnemyPunch");
-            }
-            else {
-                animatorEnemy.Play("BasicEnemyJab");
-            }
-
-            yield return new WaitForSeconds(0.3f);
+        if (Random.Range(1,3) == 1) {
+            Debug.Log("Punch");
+            animatorEnemy.Play("BasicEnemyPunch");
         }
+        else {
+            Debug.Log("Jab");
+            animatorEnemy.Play("BasicEnemyJab");
+        }
+
+        yield return new WaitForSeconds(0.3f);
 
         inAction = false;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-    
 
 }
