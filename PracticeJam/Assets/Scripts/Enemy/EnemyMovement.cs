@@ -47,6 +47,15 @@ public class EnemyMovement : MonoBehaviour
             spriteRendererEnemy.flipX = true;
         }
 
+        if (direction.y > 0.01f) {
+            Debug.Log("Layer is 3");
+            spriteRendererEnemy.sortingOrder = 3;
+        }
+        else {
+            Debug.Log("Layer is 1");
+            spriteRendererEnemy.sortingOrder = 1;
+        }
+
         animatorEnemy.Play("BasicEnemyWalk");
         rigidbodyEnemy.MovePosition((Vector2)transform.position + (Vector2)(direction * moveEnemySpeed * Time.deltaTime));
     }
@@ -62,11 +71,9 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator attackPlayer() {
 
         if (Random.Range(1,3) == 1) {
-            Debug.Log("Punch");
             animatorEnemy.Play("BasicEnemyPunch");
         }
         else {
-            Debug.Log("Jab");
             animatorEnemy.Play("BasicEnemyJab");
         }
 
