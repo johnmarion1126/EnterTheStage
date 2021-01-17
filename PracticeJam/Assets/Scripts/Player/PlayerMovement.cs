@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
     public Rigidbody2D rigidBody;
     public Animator animator;
-    public SpriteRenderer spriteRenderer;
 
+    public GameObject playerObject;
     public GameObject playerAttack;
+    public GameObject enemyObject;
 
     public float moveSpeed = 5f; 
     private bool inAction = false;
@@ -32,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (movement.x == 1) {
                 animator.Play("HeroWalk");
-                spriteRenderer.flipX = false;
+                playerObject.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
             }
             else if (movement.x == -1) {
                 animator.Play("HeroWalk");
-                spriteRenderer.flipX = true;
+                playerObject.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
             }
             else {
                 animator.Play("HeroIdle");
@@ -53,15 +53,26 @@ public class PlayerMovement : MonoBehaviour
         }  
     }
 
+    void OnTriggerEnter2D(Collider2D enemyObject) {
+        if (enemyObject.name == "EnemyAttack") StartCoroutine(takeDamage());
+    }
+
     IEnumerator heroAction(string action) {
-        playerAttack.SetActive(true);
         inAction = true;
-
         animator.Play(action);
-        yield return new WaitForSeconds(0.3f);
 
+        playerAttack.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
         playerAttack.SetActive(false);
+        
         inAction = false;
     }
- 
+
+    IEnumerator takeDamage() {
+        inAction = true;
+        animator.Play("HeroHurt");
+        yield return new WaitForSeconds(0.3f);
+        inAction = false;
+    }
+
 }

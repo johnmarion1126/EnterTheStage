@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform player;
-    public GameObject playerObject;
-    private Vector2 movement;
-
     private Rigidbody2D rigidbodyEnemy;
     public Animator animatorEnemy;
     public SpriteRenderer spriteRendererEnemy;
 
+    public GameObject enemyObject;
     public GameObject enemyAttack;
+    public GameObject playerObject;
+
+    public Transform player;
+    private Vector2 movement;
 
     public float moveEnemySpeed = 2f;
     private bool inAction = false;
@@ -21,7 +22,6 @@ public class EnemyMovement : MonoBehaviour
     void Start() {
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
-        playerObject = GetComponent<GameObject>();
     }
 
     void Update() {
@@ -38,10 +38,10 @@ public class EnemyMovement : MonoBehaviour
 
     void moveEnemy(Vector2 direction) {
         if (direction.x > 0) {
-            spriteRendererEnemy.flipX = false;
+            enemyObject.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }
         else {
-            spriteRendererEnemy.flipX = true;
+            enemyObject.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
         }
 
         if (direction.y > 0.01f) {
@@ -57,18 +57,17 @@ public class EnemyMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D playerObject) {
         inRange = true;
-
         if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
     }
 
     void OnTriggerExit2D(Collider2D playerObject) {
+        Debug.Log("leaving trigger");
         inRange = false;
     }
 
     IEnumerator attackPlayer() {
         inAction = true;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
-        enemyAttack.SetActive(true);
 
         if (Random.Range(1,3) == 1) {
             animatorEnemy.Play("BasicEnemyPunch");
@@ -76,10 +75,11 @@ public class EnemyMovement : MonoBehaviour
         else {
             animatorEnemy.Play("BasicEnemyJab");
         }
-
+        
+        //enemyAttack.SetActive(true); //CAUSING A BUG WITH ONTRIGGEREXIT2D
         yield return new WaitForSeconds(0.3f);
-
-        enemyAttack.SetActive(false);
+        //enemyAttack.SetActive(false);
+        
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
         inAction = false;
