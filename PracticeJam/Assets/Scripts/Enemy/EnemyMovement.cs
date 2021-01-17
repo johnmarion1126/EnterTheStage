@@ -48,11 +48,9 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (direction.y > 0.01f) {
-            Debug.Log("Layer is 3");
             spriteRendererEnemy.sortingOrder = 3;
         }
         else {
-            Debug.Log("Layer is 1");
             spriteRendererEnemy.sortingOrder = 1;
         }
 
