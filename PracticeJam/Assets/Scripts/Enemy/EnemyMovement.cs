@@ -12,6 +12,8 @@ public class EnemyMovement : MonoBehaviour
     public Animator animatorEnemy;
     public SpriteRenderer spriteRendererEnemy;
 
+    public GameObject enemyAttack;
+
     public float moveEnemySpeed = 2f;
     private bool inAction = false;
     private bool inRange = false;
@@ -27,12 +29,7 @@ public class EnemyMovement : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
-        if (inRange && !inAction) {
-            inAction = true;
-            rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
-            StartCoroutine(attackPlayer());
-        }
-        
+        if (inRange && !inAction) StartCoroutine(attackPlayer());
     }
 
     private void FixedUpdate() {
@@ -60,6 +57,8 @@ public class EnemyMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D playerObject) {
         inRange = true;
+
+        if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
     }
 
     void OnTriggerExit2D(Collider2D playerObject) {
@@ -67,6 +66,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     IEnumerator attackPlayer() {
+        inAction = true;
+        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
+        enemyAttack.SetActive(true);
 
         if (Random.Range(1,3) == 1) {
             animatorEnemy.Play("BasicEnemyPunch");
@@ -77,9 +79,17 @@ public class EnemyMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        inAction = false;
+        enemyAttack.SetActive(false);
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
+        inAction = false;
+    }
+
+    IEnumerator takeDamage() {
+        inAction = true;
+        animatorEnemy.Play("BasicEnemyHurt");
+        yield return new WaitForSeconds(0.3f);
+        inAction = false;
     }
 
 }

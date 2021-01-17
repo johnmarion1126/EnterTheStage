@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
+    public GameObject playerAttack;
+
     public float moveSpeed = 5f; 
     private bool inAction = false;
 
@@ -52,9 +54,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     IEnumerator heroAction(string action) {
+        playerAttack.SetActive(true);
         inAction = true;
+
         animator.Play(action);
         yield return new WaitForSeconds(0.3f);
+
+        playerAttack.SetActive(false);
         inAction = false;
     }
  
