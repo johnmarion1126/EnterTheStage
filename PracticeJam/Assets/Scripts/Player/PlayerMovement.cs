@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public GameObject playerObject;
-    public GameObject playerAttack;
+    public BoxCollider2D playerAttack;
+
     public GameObject enemyObject;
 
     public float moveSpeed = 5f; 
@@ -61,9 +62,9 @@ public class PlayerMovement : MonoBehaviour
         inAction = true;
         animator.Play(action);
 
-        playerAttack.SetActive(true);
+        playerAttack.size = new Vector2(1.5f,0.5f);
         yield return new WaitForSeconds(0.3f);
-        playerAttack.SetActive(false);
+        playerAttack.size = new Vector2(0.0001f,0.0001f);
         
         inAction = false;
     }
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator takeDamage() {
         inAction = true;
         animator.Play("HeroHurt");
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         inAction = false;
     }
 

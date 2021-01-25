@@ -9,7 +9,8 @@ public class EnemyMovement : MonoBehaviour
     public SpriteRenderer spriteRendererEnemy;
 
     public GameObject enemyObject;
-    public GameObject enemyAttack;
+    public BoxCollider2D enemyAttack;
+
     public GameObject playerObject;
 
     public Transform player;
@@ -61,7 +62,6 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D playerObject) {
-        Debug.Log("leaving trigger");
         inRange = false;
     }
 
@@ -76,9 +76,9 @@ public class EnemyMovement : MonoBehaviour
             animatorEnemy.Play("BasicEnemyJab");
         }
         
-        //enemyAttack.SetActive(true); //CAUSING A BUG WITH ONTRIGGEREXIT2D
+        enemyAttack.size = new Vector2(1.5f,0.5f);
         yield return new WaitForSeconds(0.3f);
-        //enemyAttack.SetActive(false);
+        enemyAttack.size = new Vector2(0.0001f,0.0001f);
         
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;

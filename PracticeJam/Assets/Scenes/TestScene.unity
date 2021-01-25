@@ -662,7 +662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &331320199
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +701,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4981236, y: 0.54044735}
+  m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -986,9 +986,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &917469491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 917469491, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+--- !u!61 &917469492 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 917469493, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
   m_PrefabInstance: {fileID: 3356149717431150370}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1082651360
@@ -1089,7 +1089,7 @@ MonoBehaviour:
   rigidBody: {fileID: 1765557057}
   animator: {fileID: 1765557060}
   playerObject: {fileID: 1765557055}
-  playerAttack: {fileID: 331320198}
+  playerAttack: {fileID: 331320200}
   enemyObject: {fileID: 152532004}
   moveSpeed: 5
 --- !u!50 &1765557057
@@ -1327,11 +1327,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 917469491, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 917469493, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: m_Size.x
-      value: 1.4957952
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 917469493, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 917469493, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: m_Offset.x
@@ -1396,7 +1400,7 @@ PrefabInstance:
     - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: enemyAttack
       value: 
-      objectReference: {fileID: 917469491}
+      objectReference: {fileID: 917469492}
     - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: enemyObject
       value: 
