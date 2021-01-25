@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     public float moveEnemySpeed = 2f;
     private bool inAction = false;
     private bool inRange = false;
+    private float damaged = 0.5f;
 
     void Start() {
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
@@ -30,11 +31,12 @@ public class EnemyMovement : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
-        if (inRange && !inAction) StartCoroutine(attackPlayer());
+        if (damaged < 0.5f) damaged += Time.deltaTime;
+        if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
     }
 
     private void FixedUpdate() {
-        if (!inAction) moveEnemy(movement);
+        if (!inAction && damaged >= 0.5f) moveEnemy(movement);
     }
 
     void moveEnemy(Vector2 direction) {
@@ -58,16 +60,25 @@ public class EnemyMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D playerObject) {
         inRange = true;
+        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
         if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
     }
 
     void OnTriggerExit2D(Collider2D playerObject) {
         inRange = false;
+        rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
+        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    IEnumerator delayCall() {
+        inAction = true;
+        animatorEnemy.Play("BasicEnemyIdle");
+        yield return new WaitForSeconds(0.5f);
+        if (inRange && damaged >= 0.5f) StartCoroutine(attackPlayer());
+        else inAction = false;
     }
 
     IEnumerator attackPlayer() {
-        inAction = true;
-        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
 
         if (Random.Range(1,3) == 1) {
             animatorEnemy.Play("BasicEnemyPunch");
@@ -80,16 +91,13 @@ public class EnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         enemyAttack.size = new Vector2(0.0001f,0.0001f);
         
-        rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
-        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
         inAction = false;
     }
 
     IEnumerator takeDamage() {
-        inAction = true;
+        damaged = 0f;
         animatorEnemy.Play("BasicEnemyHurt");
-        yield return new WaitForSeconds(0.3f);
-        inAction = false;
+        yield return new WaitForSeconds(0.2f);
     }
 
 }
