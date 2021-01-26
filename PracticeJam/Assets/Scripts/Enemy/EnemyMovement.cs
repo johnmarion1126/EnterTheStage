@@ -64,6 +64,7 @@ public class EnemyMovement : MonoBehaviour
         if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
     }
 
+    //TODO: FIX ONTRIGGEREXIT2D
     void OnTriggerExit2D(Collider2D playerObject) {
         inRange = false;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
