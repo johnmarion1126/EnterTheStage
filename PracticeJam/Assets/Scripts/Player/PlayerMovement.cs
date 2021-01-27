@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator takeDamage() {
         inAction = true;
         animator.Play("HeroHurt");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         inAction = false;
     }
 

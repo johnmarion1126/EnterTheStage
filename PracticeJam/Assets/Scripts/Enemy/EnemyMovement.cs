@@ -17,9 +17,10 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 movement;
 
     public float moveEnemySpeed = 2f;
+    private float damaged = 0.5f;
+    private float range = 2.0f;
     private bool inAction = false;
     private bool inRange = false;
-    private float damaged = 0.5f;
 
     void Start() {
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
@@ -33,6 +34,12 @@ public class EnemyMovement : MonoBehaviour
 
         if (damaged < 0.5f) damaged += Time.deltaTime;
         if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
+
+        if (Vector3.Distance(player.position, transform.position) >= range) {
+            inRange = false;
+            rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
+            rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     private void FixedUpdate() {
@@ -64,12 +71,14 @@ public class EnemyMovement : MonoBehaviour
         if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
     }
 
+    /*
     //TODO: FIX ONTRIGGEREXIT2D
     void OnTriggerExit2D(Collider2D playerObject) {
         inRange = false;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+    */
 
     IEnumerator delayCall() {
         inAction = true;
