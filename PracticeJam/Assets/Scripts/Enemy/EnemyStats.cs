@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    public int enemyHP;
-    public int enemySPEED;
-    public int enemyDMG;
+    public int enemyMaxHP;
+    public int enemyCurrentHP;
+    public int enemyDamage;
 
-    void Start() {
-        
+    public void takeDamage (int dmg) {
+        enemyCurrentHP -= dmg;
+        if (enemyCurrentHP <= 0) {
+            Debug.Log("HP is 0");
+        }
     }
 
-    void Update() {
-        
-    }
 }
