@@ -6,12 +6,14 @@ public class EnemyStats : MonoBehaviour
 {
     public int enemyMaxHP;
     public int enemyCurrentHP;
-    public int enemyDamage;
 
-    public void takeDamage (int dmg) {
+    public bool takeDamage (int dmg) {
         enemyCurrentHP -= dmg;
         if (enemyCurrentHP <= 0) {
-            Debug.Log("HP is 0");
+            return true;
+        }
+        else {
+            return false;
         }
     }
 

@@ -275,7 +275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00000000
+  m_Text: 0
 --- !u!222 &116886744
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -303,7 +303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHP: 5
   enemyCurrentHP: 5
-  enemyDamage: 1
 --- !u!1 &222061515
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +479,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HP IIIII
+  m_Text: HP
 --- !u!222 &244506713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -932,7 +931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpText: {fileID: 244506712}
   scoreText: {fileID: 116886743}
-  player: {fileID: 1765557055}
 --- !u!1 &800132063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1120,7 @@ MonoBehaviour:
   animator: {fileID: 1765557060}
   playerObject: {fileID: 1765557055}
   playerAttack: {fileID: 331320200}
+  hpScore: {fileID: 574973307}
   enemyObject: {fileID: 152532004}
   moveSpeed: 5
 --- !u!50 &1765557057
@@ -1270,7 +1269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMaxHP: 5
   playerCurrentHP: 5
-  playerDamage: 1
 --- !u!1 &1879770285
 GameObject:
   m_ObjectHideFlags: 0

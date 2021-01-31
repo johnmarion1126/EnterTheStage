@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public Animator animatorEnemy;
     public SpriteRenderer spriteRendererEnemy;
 
+    EnemyStats enemyStats;
     public GameObject enemyObject;
     public BoxCollider2D enemyAttack;
 
@@ -21,8 +22,10 @@ public class EnemyMovement : MonoBehaviour
     private float range = 2.0f;
     private bool inAction = false;
     private bool inRange = false;
+    private bool isDead = false;
 
     void Start() {
+        enemyStats = enemyObject.GetComponent<EnemyStats>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
     }
@@ -32,6 +35,7 @@ public class EnemyMovement : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
+        if (isDead) Debug.Log("Enemy is dead");
         if (damaged < 0.5f) damaged += Time.deltaTime;
         if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
 
@@ -71,15 +75,6 @@ public class EnemyMovement : MonoBehaviour
         if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
     }
 
-    /*
-    //TODO: FIX ONTRIGGEREXIT2D
-    void OnTriggerExit2D(Collider2D playerObject) {
-        inRange = false;
-        rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
-        rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
-    }
-    */
-
     IEnumerator delayCall() {
         inAction = true;
         animatorEnemy.Play("BasicEnemyIdle");
@@ -107,6 +102,7 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator takeDamage() {
         damaged = 0f;
         animatorEnemy.Play("BasicEnemyHurt");
+        isDead = enemyStats.takeDamage(1);
         yield return new WaitForSeconds(0.2f);
     }
 

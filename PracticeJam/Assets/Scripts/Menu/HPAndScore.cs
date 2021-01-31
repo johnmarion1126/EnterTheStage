@@ -9,23 +9,21 @@ public class HPAndScore : MonoBehaviour
     public Text scoreText;
     private int currentScore;
 
-    public GameObject player;
-    PlayerStats playerStats;
-
-    void Awake() {
-        playerStats = player.GetComponent<PlayerStats>();
-
+    public void setHP(int amount) {
         hpText.text = "HP";
-        for (int i = 0; i < playerStats.playerMaxHP; i++) {
+        for (int i = 0; i < amount; i++) {
             hpText.text += "I";
         }
-        scoreText.text = "0";
-        currentScore = 0;
     }
 
-    public void takeDamage(int damage) {
+    public void setScore(int amount) {
+        currentScore = amount;
+        scoreText.text = currentScore.ToString();
+    }
+
+    public void removeHP(int damage) {
         for (int i = 0; i < damage; i++) {
-            hpText.text.Remove(hpText.text.Length-1);
+            hpText.text = hpText.text.Substring(0, hpText.text.Length - 1);
         }
     }
 

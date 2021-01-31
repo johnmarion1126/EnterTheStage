@@ -7,25 +7,34 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rigidBody;
     public Animator animator;
 
+    PlayerStats playerStats;
     public GameObject playerObject;
     public BoxCollider2D playerAttack;
+    public HPAndScore hpScore;
 
     public GameObject enemyObject;
 
     public float moveSpeed = 5f; 
     private bool inAction = false;
+    private bool isDead = false;
 
     Vector2 movement;
 
     void Start() {
+        playerStats = playerObject.GetComponent<PlayerStats>();
+        hpScore = hpScore.GetComponent<HPAndScore>();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+
+        hpScore.setHP(playerStats.playerCurrentHP);
+        hpScore.setScore(0);
     }
 
     void Update() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        if (isDead) Debug.Log("Game Over");
         if (!inAction) {
 
             if (movement.y != 0) {
@@ -72,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator takeDamage() {
         inAction = true;
         animator.Play("HeroHurt");
+        isDead = playerStats.takeDamage(1);
+        hpScore.removeHP(1);
         yield return new WaitForSeconds(0.3f);
         inAction = false;
     }
