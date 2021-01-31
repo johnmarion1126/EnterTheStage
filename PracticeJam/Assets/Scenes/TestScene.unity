@@ -1276,6 +1276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMaxHP: 5
   playerCurrentHP: 5
+  spriteRenderer: {fileID: 1765557058}
+  player: {fileID: 1765557055}
 --- !u!1 &1879770285
 GameObject:
   m_ObjectHideFlags: 0

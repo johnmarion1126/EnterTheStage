@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        if (isDead) Debug.Log("Game Over");
         if (!inAction) {
 
             if (movement.y != 0) {
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D enemyObject) {
-        if (enemyObject.name == "EnemyAttack") StartCoroutine(takeDamage());
+        if (enemyObject.name == "EnemyAttack" && !isDead) StartCoroutine(takeDamage());
     }
 
     IEnumerator heroAction(string action) {
@@ -80,11 +79,18 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator takeDamage() {
         inAction = true;
-        animator.Play("HeroHurt");
-        isDead = playerStats.takeDamage(1);
         hpScore.removeHP(1);
-        yield return new WaitForSeconds(0.3f);
-        inAction = false;
+        isDead = playerStats.takeDamage(1);
+
+        if (isDead) {
+            animator.Play("HeroFaint");
+            StartCoroutine(playerStats.fadeOut());
+        }
+        else {
+            animator.Play("HeroHurt");
+            yield return new WaitForSeconds(0.3f);
+            inAction = false;
+        }
     }
 
 }
