@@ -303,6 +303,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHP: 5
   enemyCurrentHP: 5
+  spriteRenderer: {fileID: 152532011}
+  enemy: {fileID: 152532004}
+--- !u!212 &152532011 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3356149717314933511, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+  m_PrefabInstance: {fileID: 3356149717431150370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &222061515
 GameObject:
   m_ObjectHideFlags: 0

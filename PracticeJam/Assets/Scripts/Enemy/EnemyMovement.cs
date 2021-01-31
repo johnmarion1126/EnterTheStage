@@ -35,7 +35,6 @@ public class EnemyMovement : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
-        if (isDead) Debug.Log("Enemy is dead");
         if (damaged < 0.5f) damaged += Time.deltaTime;
         if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
 
@@ -72,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D playerObject) {
         inRange = true;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
-        if (playerObject.name == "PlayerAttack") StartCoroutine(takeDamage());
+        if (playerObject.name == "PlayerAttack" && !isDead) StartCoroutine(takeDamage());
     }
 
     IEnumerator delayCall() {
@@ -101,9 +100,17 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator takeDamage() {
         damaged = 0f;
-        animatorEnemy.Play("BasicEnemyHurt");
         isDead = enemyStats.takeDamage(1);
-        yield return new WaitForSeconds(0.2f);
+
+        if (isDead) {
+            animatorEnemy.Play("BasicEnemyFaint");
+            damaged = -1f;
+            StartCoroutine(enemyStats.fadeOut());
+        }
+        else {
+            animatorEnemy.Play("BasicEnemyHurt");
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
 }
