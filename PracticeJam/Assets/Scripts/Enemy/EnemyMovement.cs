@@ -12,8 +12,9 @@ public class EnemyMovement : MonoBehaviour
     public GameObject enemyObject;
     public BoxCollider2D enemyAttack;
 
+    DialogBox dialog;
+    public GameObject dialogBox;
     public GameObject playerObject;
-
     public Transform player;
     private Vector2 movement;
 
@@ -25,9 +26,11 @@ public class EnemyMovement : MonoBehaviour
     private bool isDead = false;
 
     void Start() {
+        dialog = dialogBox.GetComponent<DialogBox>();
         enemyStats = enemyObject.GetComponent<EnemyStats>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
+        StartCoroutine(enemyGreet());
     }
 
     void Update() {
@@ -72,6 +75,10 @@ public class EnemyMovement : MonoBehaviour
         inRange = true;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
         if (playerObject.name == "PlayerAttack" && !isDead) StartCoroutine(takeDamage());
+    }
+
+    IEnumerator enemyGreet() {
+        yield return dialog.typeDialog("Joe: Where you from?");
     }
 
     IEnumerator delayCall() {
