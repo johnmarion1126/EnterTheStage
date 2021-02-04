@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     EnemyStats enemyStats;
     public GameObject enemyObject;
     public BoxCollider2D enemyAttack;
+    public HPAndScore hpScore;
 
     //DialogBox dialog;
     //public GameObject dialogBox;
@@ -27,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start() {
         enemyStats = enemyObject.GetComponent<EnemyStats>();
+        hpScore = hpScore.GetComponent<HPAndScore>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
         //dialog = dialogBox.GetComponent<DialogBox>();
@@ -108,6 +110,7 @@ public class EnemyMovement : MonoBehaviour
         if (isDead) {
             animatorEnemy.Play("BasicEnemyFaint");
             damaged = -1f;
+            hpScore.increaseScore(100);
             StartCoroutine(enemyStats.fadeOut());
         }
         else {

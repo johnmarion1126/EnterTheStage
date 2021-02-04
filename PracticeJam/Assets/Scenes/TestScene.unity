@@ -1524,6 +1524,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1765557059}
     - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+      propertyPath: hpScore
+      value: 
+      objectReference: {fileID: 574973307}
+    - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: dialogBox
       value: 
       objectReference: {fileID: 279953116}
