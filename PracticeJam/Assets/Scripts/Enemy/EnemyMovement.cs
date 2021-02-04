@@ -12,8 +12,8 @@ public class EnemyMovement : MonoBehaviour
     public GameObject enemyObject;
     public BoxCollider2D enemyAttack;
 
-    DialogBox dialog;
-    public GameObject dialogBox;
+    //DialogBox dialog;
+    //public GameObject dialogBox;
     public GameObject playerObject;
     public Transform player;
     private Vector2 movement;
@@ -26,11 +26,11 @@ public class EnemyMovement : MonoBehaviour
     private bool isDead = false;
 
     void Start() {
-        dialog = dialogBox.GetComponent<DialogBox>();
         enemyStats = enemyObject.GetComponent<EnemyStats>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
-        StartCoroutine(enemyGreet());
+        //dialog = dialogBox.GetComponent<DialogBox>();
+        //StartCoroutine(dialog.typeDialog(enemyGreet));
     }
 
     void Update() {
@@ -77,10 +77,6 @@ public class EnemyMovement : MonoBehaviour
         if (playerObject.name == "PlayerAttack" && !isDead) StartCoroutine(takeDamage());
     }
 
-    IEnumerator enemyGreet() {
-        yield return dialog.typeDialog("Joe: Where you from?");
-    }
-
     IEnumerator delayCall() {
         inAction = true;
         animatorEnemy.Play("BasicEnemyIdle");
@@ -98,7 +94,7 @@ public class EnemyMovement : MonoBehaviour
             animatorEnemy.Play("BasicEnemyJab");
         }
         
-        enemyAttack.size = new Vector2(1.5f,0.5f);
+        enemyAttack.size = new Vector2(1.5f,0.1f);
         yield return new WaitForSeconds(0.3f);
         enemyAttack.size = new Vector2(0.0001f,0.0001f);
         

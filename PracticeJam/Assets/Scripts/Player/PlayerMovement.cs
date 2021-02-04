@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         inAction = true;
         animator.Play(action);
 
-        playerAttack.size = new Vector2(1.5f,0.5f);
+        playerAttack.size = new Vector2(1.5f,0.1f);
         yield return new WaitForSeconds(0.3f);
         playerAttack.size = new Vector2(0.0001f,0.0001f);
         
