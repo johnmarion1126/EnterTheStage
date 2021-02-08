@@ -9,6 +9,14 @@ public class HPAndScore : MonoBehaviour
     public Text scoreText;
     private int currentScore;
 
+    public Image blackOutScreen;
+    public Text blackOutText;
+
+    public void Start() {
+        blackOutScreen.CrossFadeAlpha(0,0,false);
+        blackOutText.CrossFadeAlpha(0,0,false);
+    }
+
     public void setHP(int amount) {
         hpText.text = "HP";
         for (int i = 0; i < amount; i++) {
@@ -25,6 +33,8 @@ public class HPAndScore : MonoBehaviour
         for (int i = 0; i < damage; i++) {
             hpText.text = hpText.text.Substring(0, hpText.text.Length - 1);
         }
+        
+        if (hpText.text == "HP") StartCoroutine(blackOut());
     }
 
     public IEnumerator healHP(int amount) {
@@ -42,5 +52,11 @@ public class HPAndScore : MonoBehaviour
     public void decreaseScore(int points) {
         currentScore -= points;
         scoreText.text = currentScore.ToString();
+    }
+
+    public IEnumerator blackOut() {
+        blackOutScreen.CrossFadeAlpha(1,3,false);
+        blackOutText.CrossFadeAlpha(1,3,false);
+        yield return new WaitForSeconds(2f);
     }
 }
