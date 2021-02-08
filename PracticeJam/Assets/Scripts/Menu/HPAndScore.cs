@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HPAndScore : MonoBehaviour
 {
@@ -11,6 +12,23 @@ public class HPAndScore : MonoBehaviour
 
     public Image blackOutScreen;
     public Text blackOutText;
+    private bool isGamePaused = false;
+
+    public string sceneLevel;
+    public string startMenu;
+
+    public void Update() {
+        if (isGamePaused) {
+            if (Input.GetKey("z")) {
+                ContinueGame();
+                SceneManager.LoadScene(sceneLevel);
+            }
+            else if (Input.GetKey("x")) {
+                ContinueGame();
+                SceneManager.LoadScene(startMenu);
+            }
+        }
+    }
 
     public void Start() {
         blackOutScreen.CrossFadeAlpha(0,0,false);
@@ -55,8 +73,20 @@ public class HPAndScore : MonoBehaviour
     }
 
     public IEnumerator blackOut() {
-        blackOutScreen.CrossFadeAlpha(1,3,false);
-        blackOutText.CrossFadeAlpha(1,3,false);
-        yield return new WaitForSeconds(2f);
+        blackOutScreen.CrossFadeAlpha(1,2,false);
+        blackOutText.CrossFadeAlpha(1,2,false);
+        yield return new WaitForSeconds(3f);
+        PauseGame();
+        
+    }
+
+    private void PauseGame() {
+        Time.timeScale = 0;
+        isGamePaused = true;
+    }
+
+    private void ContinueGame() {
+        Time.timeScale = 1;
+        isGamePaused = false;
     }
 }

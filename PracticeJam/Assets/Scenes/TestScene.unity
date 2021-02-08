@@ -957,6 +957,8 @@ MonoBehaviour:
   scoreText: {fileID: 116886743}
   blackOutScreen: {fileID: 1008062343}
   blackOutText: {fileID: 1091211847}
+  sceneLevel: TestScene
+  startMenu: StartMenu
 --- !u!1 &800132063
 GameObject:
   m_ObjectHideFlags: 0
