@@ -29,13 +29,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isDead = false;
     private Vector2 movement;
 
-    void Start() {
+    void Awake() {
         playerStats = playerObject.GetComponent<Stats>();
         playerHP = playerHP.GetComponent<HP>();
         playerScore = playerScore.GetComponent<Score>();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+    }
 
+    void Start() {
         playerHP.setHP(playerStats.currentHP);
         playerScore.setScore(0);
     }

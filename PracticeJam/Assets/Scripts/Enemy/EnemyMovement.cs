@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     private bool inRange = false;
     private bool isDead = false;
 
-    void Start() {
+    void Awake() {
         enemyStats = enemyObject.GetComponent<Stats>();
         score = score.GetComponent<Score>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
