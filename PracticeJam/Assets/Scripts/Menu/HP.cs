@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class HPAndScore : MonoBehaviour
+public class HP : MonoBehaviour
 {
-    public Text hpText;
-    public Text scoreText;
-    private int currentScore;
+    [SerializeField]
+    private Text hpText;
+    [SerializeField]
+    private Image blackOutScreen;
+    [SerializeField]
+    private Text blackOutText;
 
-    public Image blackOutScreen;
-    public Text blackOutText;
+    [SerializeField]
+    private string sceneLevel;
+    [SerializeField]
+    private string startMenu;
+
     private bool isGamePaused = false;
-
-    public string sceneLevel;
-    public string startMenu;
 
     public void Update() {
         if (isGamePaused) {
@@ -42,11 +45,6 @@ public class HPAndScore : MonoBehaviour
         }
     }
 
-    public void setScore(int amount) {
-        currentScore = amount;
-        scoreText.text = currentScore.ToString();
-    }
-
     public void removeHP(int damage) {
         for (int i = 0; i < damage; i++) {
             hpText.text = hpText.text.Substring(0, hpText.text.Length - 1);
@@ -60,16 +58,6 @@ public class HPAndScore : MonoBehaviour
             hpText.text += "I";
             yield return new WaitForSeconds(0.1f);
         }
-    }
-
-    public void increaseScore(int points) {
-        currentScore += points;
-        scoreText.text = currentScore.ToString();
-    }
-
-    public void decreaseScore(int points) {
-        currentScore -= points;
-        scoreText.text = currentScore.ToString();
     }
 
     public IEnumerator blackOut() {

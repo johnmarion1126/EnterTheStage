@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class TitleCard : MonoBehaviour
 {
-    public GameObject title;
-    public GameObject playText;
-    public Image fade;
-    public string scene;
+    [SerializeField]
+    private GameObject title;
+    [SerializeField]
+    private GameObject playText;
+    [SerializeField]
+    private Image fade;
+    [SerializeField]
+    private string scene;
+    
     private bool inScene = false;
     private bool delay = false;
 

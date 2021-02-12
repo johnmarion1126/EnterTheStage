@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rigidBody;
-    public Animator animator;
+    [SerializeField]
+    private Rigidbody2D rigidBody;
+    [SerializeField]
+    private Animator animator;
 
-    PlayerStats playerStats;
-    public GameObject playerObject;
-    public BoxCollider2D playerAttack;
-    public HPAndScore hpScore;
+    [SerializeField]
+    private Stats playerStats;
+    [SerializeField]
+    private GameObject playerObject;
+    [SerializeField]
+    private BoxCollider2D playerAttack;
+    [SerializeField]
+    private HP playerHP;
+    [SerializeField]
+    private Score playerScore;
 
-    public GameObject enemyObject;
-
-    public float moveSpeed = 5f; 
+    [SerializeField]
+    private GameObject enemyObject;
+    [SerializeField]
+    private float moveSpeed = 5f; 
+    
     private bool inAction = false;
     private bool isDead = false;
-
-    Vector2 movement;
+    private Vector2 movement;
 
     void Start() {
-        playerStats = playerObject.GetComponent<PlayerStats>();
-        hpScore = hpScore.GetComponent<HPAndScore>();
+        playerStats = playerObject.GetComponent<Stats>();
+        playerHP = playerHP.GetComponent<HP>();
+        playerScore = playerScore.GetComponent<Score>();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
 
-        hpScore.setHP(playerStats.playerCurrentHP);
-        hpScore.setScore(0);
+        playerHP.setHP(playerStats.currentHP);
+        playerScore.setScore(0);
     }
 
     void Update() {
@@ -79,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator takeDamage() {
         inAction = true;
-        hpScore.removeHP(1);
+        playerHP.removeHP(1);
         isDead = playerStats.takeDamage(1);
 
         if (isDead) {

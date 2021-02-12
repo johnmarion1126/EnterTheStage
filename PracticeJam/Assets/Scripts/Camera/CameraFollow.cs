@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    
-    public GameObject playerObject;
+    [SerializeField]
+    private GameObject playerObject;
 
     void Update()
     {

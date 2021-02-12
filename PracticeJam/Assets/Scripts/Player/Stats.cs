@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerStats : MonoBehaviour
+public class Stats : MonoBehaviour
 {
-    public int playerMaxHP;
-    public int playerCurrentHP;
+    [SerializeField]
+    private int maxHP;
+    [SerializeField]
+    public int currentHP;
 
-    public SpriteRenderer spriteRenderer;
-    public GameObject player;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private GameObject unit;
     
     public bool takeDamage (int dmg) {
-        playerCurrentHP -= dmg;
-        if (playerCurrentHP <= 0) {
+        currentHP -= dmg;
+        if (currentHP <= 0) {
             return true;
         }
         else {
@@ -28,12 +32,14 @@ public class PlayerStats : MonoBehaviour
             spriteRenderer.material.color = c;
             yield return new WaitForSeconds(0.05f);
         }
+        yield return new WaitForSeconds(0.5f);
+        Destroy(unit);
     }
 
     public void heal (int amount) {
-        playerCurrentHP += amount;
-        if (playerCurrentHP >= playerMaxHP) {
-            playerCurrentHP = playerMaxHP;
+        currentHP += amount;
+        if (currentHP >= maxHP) {
+            currentHP = maxHP;
         }
     }
 }

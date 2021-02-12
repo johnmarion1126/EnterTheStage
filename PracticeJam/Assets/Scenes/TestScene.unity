@@ -298,13 +298,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 152532004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cfaadfbd16a8454ab5a61bc78498eb9, type: 3}
+  m_Script: {fileID: 11500000, guid: d02f7c9dcafe5cb4c86db78b0540f277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaxHP: 5
-  enemyCurrentHP: 5
+  maxHP: 5
+  currentHP: 5
   spriteRenderer: {fileID: 152532011}
-  enemy: {fileID: 152532004}
+  unit: {fileID: 152532004}
+--- !u!50 &152532009 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4371866282531126120, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+  m_PrefabInstance: {fileID: 3356149717431150370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &152532011 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3356149717314933511, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
@@ -511,7 +516,7 @@ GameObject:
   - component: {fileID: 279953121}
   - component: {fileID: 279953123}
   m_Layer: 5
-  m_Name: GameOver&Dialog
+  m_Name: DialogBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +581,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &279953120
 RectTransform:
@@ -849,6 +854,7 @@ GameObject:
   - component: {fileID: 574973304}
   - component: {fileID: 574973303}
   - component: {fileID: 574973307}
+  - component: {fileID: 574973308}
   m_Layer: 5
   m_Name: HP&Score
   m_TagString: Untagged
@@ -950,15 +956,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 574973302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6098c118561b5824ab46605828aa8a5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a17fc67aa5aa2244bbabe35c2cfa5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 244506712}
-  scoreText: {fileID: 116886743}
   blackOutScreen: {fileID: 1008062343}
   blackOutText: {fileID: 1091211847}
   sceneLevel: TestScene
   startMenu: StartMenu
+--- !u!114 &574973308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574973302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273d1704ed41612439a5493619b1340a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 116886743}
 --- !u!1 &800132063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1357,7 @@ GameObject:
   - component: {fileID: 1765557061}
   - component: {fileID: 1765557062}
   m_Layer: 0
-  m_Name: Hero
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1359,9 +1377,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1765557057}
   animator: {fileID: 1765557060}
+  playerStats: {fileID: 1765557062}
   playerObject: {fileID: 1765557055}
   playerAttack: {fileID: 331320200}
-  hpScore: {fileID: 574973307}
+  playerHP: {fileID: 574973307}
+  playerScore: {fileID: 574973308}
   enemyObject: {fileID: 152532004}
   moveSpeed: 5
 --- !u!50 &1765557057
@@ -1505,13 +1525,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765557055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c8d78b3438bd7498c155e9d09de81b, type: 3}
+  m_Script: {fileID: 11500000, guid: d02f7c9dcafe5cb4c86db78b0540f277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHP: 5
-  playerCurrentHP: 5
+  maxHP: 5
+  currentHP: 5
   spriteRenderer: {fileID: 1765557058}
-  player: {fileID: 1765557055}
+  unit: {fileID: 1765557055}
 --- !u!1 &1879770285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,6 +1702,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 574973308}
+    - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1765557059}
@@ -1693,6 +1717,10 @@ PrefabInstance:
       propertyPath: dialogBox
       value: 
       objectReference: {fileID: 279953116}
+    - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+      propertyPath: enemyStats
+      value: 
+      objectReference: {fileID: 152532005}
     - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: enemyAttack
       value: 
@@ -1709,6 +1737,10 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 1765557055}
+    - target: {fileID: 3356149717314933509, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
+      propertyPath: rigidbodyEnemy
+      value: 
+      objectReference: {fileID: 152532009}
     - target: {fileID: 3356149717314933510, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
       propertyPath: m_Name
       value: Enemy

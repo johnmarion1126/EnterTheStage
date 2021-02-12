@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField]
     private Rigidbody2D rigidbodyEnemy;
-    public Animator animatorEnemy;
-    public SpriteRenderer spriteRendererEnemy;
+    [SerializeField]
+    private Animator animatorEnemy;
+    [SerializeField]
+    private SpriteRenderer spriteRendererEnemy;
 
-    EnemyStats enemyStats;
-    public GameObject enemyObject;
-    public BoxCollider2D enemyAttack;
-    public HPAndScore hpScore;
+    [SerializeField]
+    private Stats enemyStats;
+    [SerializeField]
+    private GameObject enemyObject;
+    [SerializeField]
+    private BoxCollider2D enemyAttack;
+    [SerializeField]
+    private Score score;
 
-    //DialogBox dialog;
-    //public GameObject dialogBox;
-    public GameObject playerObject;
-    public Transform player;
+    [SerializeField]
+    private GameObject playerObject;
+    [SerializeField]
+    private Transform player;
+    [SerializeField]
     private Vector2 movement;
-
-    public float moveEnemySpeed = 2f;
+    [SerializeField]
+    private float moveEnemySpeed = 2f;
+    
     private float damaged = 0.5f;
     private float range = 2.0f;
     private bool inAction = false;
@@ -27,12 +36,10 @@ public class EnemyMovement : MonoBehaviour
     private bool isDead = false;
 
     void Start() {
-        enemyStats = enemyObject.GetComponent<EnemyStats>();
-        hpScore = hpScore.GetComponent<HPAndScore>();
+        enemyStats = enemyObject.GetComponent<Stats>();
+        score = score.GetComponent<Score>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
-        //dialog = dialogBox.GetComponent<DialogBox>();
-        //StartCoroutine(dialog.typeDialog(enemyGreet));
     }
 
     void Update() {
@@ -110,7 +117,7 @@ public class EnemyMovement : MonoBehaviour
         if (isDead) {
             animatorEnemy.Play("BasicEnemyFaint");
             damaged = -1f;
-            hpScore.increaseScore(100);
+            score.increaseScore(100);
             StartCoroutine(enemyStats.fadeOut());
         }
         else {

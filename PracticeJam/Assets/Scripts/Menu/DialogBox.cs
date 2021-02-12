@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour
 {
-    public int lettersPerSecond;
-    public Text dialogText;
+    [SerializeField]
+    private int lettersPerSecond;
+    [SerializeField]
+    private Text dialogText;
 
     public IEnumerator typeDialog(string dialog) {
         dialogText.text = "";
