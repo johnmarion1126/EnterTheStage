@@ -49,12 +49,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (damaged < 0.5f) damaged += Time.deltaTime;
         if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
-
-        if (Vector3.Distance(player.position, transform.position) >= range) {
-            inRange = false;
-            rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
-            rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
+        checkInRange();
     }
 
     private void FixedUpdate() {
@@ -78,6 +73,14 @@ public class EnemyMovement : MonoBehaviour
 
         animatorEnemy.Play("BasicEnemyWalk");
         rigidbodyEnemy.MovePosition((Vector2)transform.position + (Vector2)(direction * moveEnemySpeed * Time.deltaTime));
+    }
+
+    void checkInRange() {
+        if (Vector3.Distance(player.position, transform.position) >= range) {
+            inRange = false;
+            rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
+            rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D playerObject) {

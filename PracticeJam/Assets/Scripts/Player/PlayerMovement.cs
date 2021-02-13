@@ -104,5 +104,4 @@ public class PlayerMovement : MonoBehaviour
             inAction = false;
         }
     }
-
 }
