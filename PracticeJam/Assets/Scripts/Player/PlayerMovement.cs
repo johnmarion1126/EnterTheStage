@@ -21,10 +21,9 @@ public class PlayerMovement : MonoBehaviour
     private Score playerScore;
 
     [SerializeField]
-    private GameObject enemyObject;
-    [SerializeField]
     private float moveSpeed = 5f; 
     
+    private int damage;
     private bool inAction = false;
     private bool isDead = false;
     private Vector2 movement;
@@ -74,8 +73,11 @@ public class PlayerMovement : MonoBehaviour
         }  
     }
 
-    void OnTriggerEnter2D(Collider2D enemyObject) {
-        if (enemyObject.name == "EnemyAttack" && !isDead) StartCoroutine(takeDamage());
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.name == "EnemyAttack" && !isDead) {
+            damage = collision.gameObject.transform.parent.gameObject.GetComponent<Stats>().damage;
+            StartCoroutine(takeDamage(damage));
+        }
     }
 
     IEnumerator heroAction(string action) {
@@ -89,10 +91,10 @@ public class PlayerMovement : MonoBehaviour
         inAction = false;
     }
 
-    IEnumerator takeDamage() {
+    IEnumerator takeDamage(int amount) {
         inAction = true;
-        playerHP.removeHP(1);
-        isDead = playerStats.takeDamage(1);
+        playerHP.removeHP(amount);
+        isDead = playerStats.takeDamage(amount);
 
         if (isDead) {
             animator.Play("HeroFaint");

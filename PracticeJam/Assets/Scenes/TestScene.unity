@@ -303,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   currentHP: 5
+  damage: 1
   spriteRenderer: {fileID: 152532011}
   unit: {fileID: 152532004}
 --- !u!50 &152532009 stripped
@@ -1530,6 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   currentHP: 5
+  damage: 1
   spriteRenderer: {fileID: 1765557058}
   unit: {fileID: 1765557055}
 --- !u!1 &1879770285

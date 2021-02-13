@@ -9,6 +9,8 @@ public class Stats : MonoBehaviour
     private int maxHP;
     [SerializeField]
     public int currentHP;
+    [SerializeField]
+    public int damage;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;

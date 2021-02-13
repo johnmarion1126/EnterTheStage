@@ -29,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float moveEnemySpeed = 2f;
     
+    private int damage;
     private float damaged = 0.5f;
     private float range = 2.0f;
     private bool inAction = false;
@@ -40,6 +41,10 @@ public class EnemyMovement : MonoBehaviour
         score = score.GetComponent<Score>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
+    }
+
+    void Start() {
+        damage = playerObject.GetComponent<Stats>().damage;
     }
 
     void Update() {
@@ -86,7 +91,7 @@ public class EnemyMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D playerObject) {
         inRange = true;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
-        if (playerObject.name == "PlayerAttack" && !isDead) StartCoroutine(takeDamage());
+        if (playerObject.name == "PlayerAttack" && !isDead) StartCoroutine(takeDamage(damage));
     }
 
     IEnumerator delayCall() {
@@ -113,9 +118,9 @@ public class EnemyMovement : MonoBehaviour
         inAction = false;
     }
 
-    IEnumerator takeDamage() {
+    IEnumerator takeDamage(int amount) {
         damaged = 0f;
-        isDead = enemyStats.takeDamage(1);
+        isDead = enemyStats.takeDamage(amount);
 
         if (isDead) {
             animatorEnemy.Play("BasicEnemyFaint");
