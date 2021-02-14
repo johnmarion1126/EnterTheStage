@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private Rigidbody2D rigidbodyEnemy;
@@ -118,7 +118,7 @@ public class EnemyMovement : MonoBehaviour
         inAction = false;
     }
 
-    IEnumerator takeDamage(int amount) {
+    public IEnumerator takeDamage(int amount) {
         damaged = 0f;
         isDead = enemyStats.takeDamage(amount);
 

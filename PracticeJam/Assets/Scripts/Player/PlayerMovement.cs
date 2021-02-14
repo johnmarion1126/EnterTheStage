@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private Rigidbody2D rigidBody;
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         inAction = false;
     }
 
-    IEnumerator takeDamage(int amount) {
+    public IEnumerator takeDamage(int amount) {
         inAction = true;
         playerHP.removeHP(amount);
         isDead = playerStats.takeDamage(amount);
