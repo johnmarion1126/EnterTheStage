@@ -18,10 +18,10 @@ public class EnemySpawner : MonoBehaviour
         if (playerObject.transform.position.x <= -42.0f && playerObject.transform.position.x >= -43.0f && levelPhases == 0) {
             levelPhases += 1;
             Instantiate(enemyObject1, new Vector3(-32.0f, 1.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(-32.0f, -1.5f, 0f), Quaternion.identity);
+            //Instantiate(enemyObject1, new Vector3(-32.0f, -1.5f, 0f), Quaternion.identity);
         }
 
         //TODO: ADD A COLLIDER FOR ENEMIES FOR OTHER ENEMIES
-        //TODO: ALLOW TO INSTANTIATE WITHOUT AN ENEMYOBJECT ALREADY IN THE HIERARCHY
+        //TODO: ADD PICKUPS TO INCREASE SCORE
     }
 }

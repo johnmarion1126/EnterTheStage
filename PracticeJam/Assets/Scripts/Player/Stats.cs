@@ -34,7 +34,7 @@ public class Stats : MonoBehaviour
             spriteRenderer.material.color = c;
             yield return new WaitForSeconds(0.05f);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         Destroy(unit);
     }
 

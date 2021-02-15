@@ -17,8 +17,6 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     private GameObject enemyObject;
     [SerializeField]
     private BoxCollider2D enemyAttack;
-    [SerializeField]
-    private Score score;
 
     [SerializeField]
     private GameObject playerObject;
@@ -38,9 +36,10 @@ public class EnemyMovement : MonoBehaviour, IDamageable
 
     void Awake() {
         enemyStats = enemyObject.GetComponent<Stats>();
-        score = score.GetComponent<Score>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
+        playerObject = GameObject.Find("Player");
+        player = playerObject.GetComponent<Transform>();
     }
 
     void Start() {
@@ -125,7 +124,6 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         if (isDead) {
             animatorEnemy.Play("BasicEnemyFaint");
             damaged = -1f;
-            score.increaseScore(100);
             StartCoroutine(enemyStats.fadeOut());
         }
         else {
