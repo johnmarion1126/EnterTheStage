@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     [SerializeField]
     private float moveSpeed = 5f; 
     
+    private GameObject enemyCollision;
     private int damage;
     private bool inAction = false;
     private bool isDead = false;
@@ -77,6 +78,13 @@ public class PlayerMovement : MonoBehaviour, IDamageable
         if (collision.name == "EnemyAttack" && !isDead) {
             damage = collision.gameObject.transform.parent.gameObject.GetComponent<Stats>().damage;
             StartCoroutine(takeDamage(damage));
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.name == "BasicEnemy(Clone)") {
+            enemyCollision = collision.gameObject.transform.GetChild(1).gameObject;
+            Physics2D.IgnoreCollision(enemyCollision.GetComponent<Collider2D>(), playerObject.GetComponent<Collider2D>());
         }
     }
 
