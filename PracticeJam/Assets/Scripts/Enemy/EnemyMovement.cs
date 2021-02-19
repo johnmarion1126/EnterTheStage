@@ -17,6 +17,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     private GameObject enemyObject;
     [SerializeField]
     private BoxCollider2D enemyAttack;
+    [SerializeField]
+    private List <string> enemyAnimations;
 
     [SerializeField]
     private GameObject playerObject;
@@ -75,7 +77,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
             spriteRendererEnemy.sortingOrder = 1;
         }
 
-        animatorEnemy.Play("BasicEnemyWalk");
+        //animatorEnemy.Play("BasicEnemyWalk");
+        animatorEnemy.Play(enemyAnimations[0]);
         rigidbodyEnemy.MovePosition((Vector2)transform.position + (Vector2)(direction * moveEnemySpeed * Time.deltaTime));
     }
 
@@ -95,7 +98,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
 
     IEnumerator delayCall() {
         inAction = true;
-        animatorEnemy.Play("BasicEnemyIdle");
+        //animatorEnemy.Play("BasicEnemyIdle");
+        animatorEnemy.Play(enemyAnimations[1]);
         yield return new WaitForSeconds(0.5f);
         if (inRange && damaged >= 0.5f) StartCoroutine(attackPlayer());
         else inAction = false;
@@ -104,10 +108,12 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     IEnumerator attackPlayer() {
 
         if (Random.Range(1,3) == 1) {
-            animatorEnemy.Play("BasicEnemyPunch");
+            //animatorEnemy.Play("BasicEnemyPunch");
+            animatorEnemy.Play(enemyAnimations[2]);
         }
         else {
-            animatorEnemy.Play("BasicEnemyJab");
+            //animatorEnemy.Play("BasicEnemyJab");
+            animatorEnemy.Play(enemyAnimations[3]);
         }
         
         enemyAttack.size = new Vector2(1.5f,0.1f);
@@ -122,12 +128,14 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         isDead = enemyStats.takeDamage(amount);
 
         if (isDead) {
-            animatorEnemy.Play("BasicEnemyFaint");
+            //animatorEnemy.Play("BasicEnemyFaint");
+            animatorEnemy.Play(enemyAnimations[4]);
             damaged = -1f;
             StartCoroutine(enemyStats.fadeOut());
         }
         else {
-            animatorEnemy.Play("BasicEnemyHurt");
+            //animatorEnemy.Play("BasicEnemyHurt");
+            animatorEnemy.Play(enemyAnimations[5]);
             yield return new WaitForSeconds(0.2f);
         }
     }

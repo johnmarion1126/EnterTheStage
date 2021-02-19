@@ -10,6 +10,8 @@ public class EnemySpawner : MonoBehaviour
     private GameObject enemyObject1;
     [SerializeField]
     private GameObject enemyObject2;
+    [SerializeField]
+    private List <GameObject> enemyObjects;
 
     private int numberOfEnemies = 0;
     private float playerPosition;

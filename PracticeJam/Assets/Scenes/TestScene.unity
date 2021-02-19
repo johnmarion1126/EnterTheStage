@@ -826,6 +826,9 @@ MonoBehaviour:
   playerObject: {fileID: 1765557055}
   enemyObject1: {fileID: 3356149717314933510, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
   enemyObject2: {fileID: 0}
+  enemyObjects:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &574973302
 GameObject:
   m_ObjectHideFlags: 0
