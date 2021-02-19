@@ -11,40 +11,36 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemyObject2;
 
-    private int levelPhases = 0;
+    private int numberOfEnemies = 0;
+    private float playerPosition;
+    private float startingPosition;
+    private float differenceInPosition;
+    private Vector3 spawnPosition;
+
+    void Start() {
+        startingPosition = playerObject.transform.position.x;
+    }
 
     void Update()
     {
-        if (playerObject.transform.position.x <= -42.0f && playerObject.transform.position.x >= -43.0f && levelPhases == 0) {
-            levelPhases += 1;
-            Instantiate(enemyObject1, new Vector3(-30.0f, 1.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(-52.0f, -1.5f, 0f), Quaternion.identity);
-        }
+        playerPosition = playerObject.transform.position.x;
+        differenceInPosition = Mathf.Abs(startingPosition - playerPosition);
 
-        if (playerObject.transform.position.x <= -16.0f && playerObject.transform.position.x >= -17.0f && levelPhases == 1) {
-            levelPhases += 1;
-            Instantiate(enemyObject1, new Vector3(-4.0f, 0.5f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(-26.0f, -1.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(4.0f, 1.0f, 0f), Quaternion.identity);
+        if (differenceInPosition >= 30.0f) {
+            differenceInPosition = 0.0f;
+            startingPosition = playerPosition;
+            StartCoroutine(spawnEnemies());
         }
+    }
 
-        if (playerObject.transform.position.x <= 10.0f && playerObject.transform.position.x >= 9.0f && levelPhases == 2) {
-            levelPhases += 1;
-            Instantiate(enemyObject1, new Vector3(22.0f, -0.5f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(0.0f, -1.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(30.0f, 1.0f, 0f), Quaternion.identity);
+    IEnumerator spawnEnemies() {
+        numberOfEnemies += 1;
+        for (int i = 0; i < numberOfEnemies; i++) {
+            if (i % 2 == 0) spawnPosition = new Vector3(Random.Range(playerPosition+10.0f,playerPosition+15.0f),Random.Range(-2.0f,1.5f), 0f);
+            else spawnPosition = new Vector3(Random.Range(playerPosition-8.0f,playerPosition-12.0f),Random.Range(-2.0f,1.5f), 0f);
+            Instantiate(enemyObject1, spawnPosition, Quaternion.identity);
+
+            if (i % 2 == 1) yield return new WaitForSeconds(2.0f);
         }
-
-        if (playerObject.transform.position.x <= 40.0f && playerObject.transform.position.x >= 39.0f && levelPhases == 3) {
-            levelPhases += 1;
-            Instantiate(enemyObject1, new Vector3(52.0f, -2.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(28.0f, 1.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(23.0f, -1.0f, 0f), Quaternion.identity);
-            Instantiate(enemyObject1, new Vector3(61.0f, -2.0f, 0f), Quaternion.identity);
-        }
-
-        //TODO: 
-        //ADD FIRST BOSS
-        //ADD PICKUPS TO INCREASE SCORE
     }
 }
