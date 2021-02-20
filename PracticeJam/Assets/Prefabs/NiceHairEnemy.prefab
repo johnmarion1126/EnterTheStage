@@ -128,8 +128,8 @@ GameObject:
   - component: {fileID: 8279266558564106267}
   - component: {fileID: 2380317947823763142}
   - component: {fileID: 5642482744701030232}
-  - component: {fileID: 5642482744701030230}
   - component: {fileID: 6205807621729535857}
+  - component: {fileID: 1309635944594897288}
   m_Layer: 0
   m_Name: NiceHairEnemy
   m_TagString: Untagged
@@ -193,7 +193,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2cd4f3a8071e62a46add25f136a94763, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32d80d1dd66cf944da149c1744855992, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -217,11 +217,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbodyEnemy: {fileID: 8279266558564106267}
-  animatorEnemy: {fileID: 5642482744701030230}
+  animatorEnemy: {fileID: 0}
   spriteRendererEnemy: {fileID: 6979823283393783924}
   enemyStats: {fileID: 6205807621729535857}
   enemyObject: {fileID: 6979823283393783925}
   enemyAttack: {fileID: 5642482745731252806}
+  enemyAnimations:
+  - NiceHairWalk
+  - NiceHairIdle
+  - NiceHairPunch
+  - NiceHairJab
+  - NiceHairFaint
+  - NiceHairHurt
   playerObject: {fileID: 0}
   player: {fileID: 0}
   movement: {x: 0, y: 0}
@@ -299,25 +306,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3525047, y: 0.0047085136}
   m_EdgeRadius: 0
---- !u!95 &5642482744701030230
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6979823283393783925}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8642761a5131cb44282ad550bf957607, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6205807621729535857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,3 +323,22 @@ MonoBehaviour:
   damage: 1
   spriteRenderer: {fileID: 6979823283393783924}
   unit: {fileID: 6979823283393783925}
+--- !u!95 &1309635944594897288
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979823283393783925}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3238aaea4205b5f4998bfaf20560592e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

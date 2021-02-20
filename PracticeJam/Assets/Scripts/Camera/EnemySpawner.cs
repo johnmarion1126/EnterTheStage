@@ -7,11 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject playerObject;
     [SerializeField]
-    private GameObject enemyObject1;
-    [SerializeField]
-    private GameObject enemyObject2;
-    [SerializeField]
     private List <GameObject> enemyObjects;
+    private GameObject enemyObject;
 
     private int numberOfEnemies = 0;
     private float playerPosition;
@@ -38,9 +35,10 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator spawnEnemies() {
         numberOfEnemies += 1;
         for (int i = 0; i < numberOfEnemies; i++) {
+            enemyObject = enemyObjects[Random.Range(0,enemyObjects.Count)];
             if (i % 2 == 0) spawnPosition = new Vector3(Random.Range(playerPosition+10.0f,playerPosition+15.0f),Random.Range(-2.0f,1.5f), 0f);
-            else spawnPosition = new Vector3(Random.Range(playerPosition-8.0f,playerPosition-12.0f),Random.Range(-2.0f,1.5f), 0f);
-            Instantiate(enemyObject1, spawnPosition, Quaternion.identity);
+            else spawnPosition = new Vector3(Random.Range(playerPosition-9.0f,playerPosition-12.0f),Random.Range(-2.0f,1.5f), 0f);
+            Instantiate(enemyObject, spawnPosition, Quaternion.identity);
 
             if (i % 2 == 1) yield return new WaitForSeconds(2.0f);
         }
