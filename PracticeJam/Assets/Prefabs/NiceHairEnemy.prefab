@@ -225,10 +225,10 @@ MonoBehaviour:
   enemyAnimations:
   - NiceHairWalk
   - NiceHairIdle
-  - NiceHairPunch
-  - NiceHairJab
   - NiceHairFaint
   - NiceHairHurt
+  - NiceHairPunch
+  - NiceHairJab
   playerObject: {fileID: 0}
   player: {fileID: 0}
   movement: {x: 0, y: 0}

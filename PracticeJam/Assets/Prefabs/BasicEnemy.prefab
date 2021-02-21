@@ -225,10 +225,10 @@ MonoBehaviour:
   enemyAnimations:
   - BasicEnemyWalk
   - BasicEnemyIdle
-  - BasicEnemyPunch
-  - BasicEnemyJab
   - BasicEnemyFaint
   - BasicEnemyHurt
+  - BasicEnemyPunch
+  - BasicEnemyJab
   playerObject: {fileID: 0}
   player: {fileID: 0}
   movement: {x: 0, y: 0}
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02f7c9dcafe5cb4c86db78b0540f277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 5
-  currentHP: 5
+  maxHP: 3
+  currentHP: 3
   damage: 1
   spriteRenderer: {fileID: 3356149717314933511}
   unit: {fileID: 3356149717314933510}

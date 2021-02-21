@@ -109,11 +109,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
 
         if (Random.Range(1,3) == 1) {
             //animatorEnemy.Play("BasicEnemyPunch");
-            animatorEnemy.Play(enemyAnimations[2]);
+            animatorEnemy.Play(enemyAnimations[4]);
         }
         else {
             //animatorEnemy.Play("BasicEnemyJab");
-            animatorEnemy.Play(enemyAnimations[3]);
+            animatorEnemy.Play(enemyAnimations[5]);
         }
         
         enemyAttack.size = new Vector2(1.5f,0.1f);
@@ -129,13 +129,13 @@ public class EnemyMovement : MonoBehaviour, IDamageable
 
         if (isDead) {
             //animatorEnemy.Play("BasicEnemyFaint");
-            animatorEnemy.Play(enemyAnimations[4]);
+            animatorEnemy.Play(enemyAnimations[2]);
             damaged = -1f;
             StartCoroutine(enemyStats.fadeOut());
         }
         else {
             //animatorEnemy.Play("BasicEnemyHurt");
-            animatorEnemy.Play(enemyAnimations[5]);
+            animatorEnemy.Play(enemyAnimations[3]);
             yield return new WaitForSeconds(0.2f);
         }
     }
