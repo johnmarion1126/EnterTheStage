@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1 : MonoBehaviour
+public class Boss1 : EnemyMovement
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public override void Update() {
+        Vector3 direction = player.position - transform.position;
+        direction.Normalize();
+        movement = direction;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (damaged < 0.5f) damaged += Time.deltaTime;
+        if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
+        checkInRange();
     }
 }

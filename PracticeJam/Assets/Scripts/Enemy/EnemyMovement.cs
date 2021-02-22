@@ -18,25 +18,27 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     [SerializeField]
     private BoxCollider2D enemyAttack;
     [SerializeField]
-    private List <string> enemyAnimations;
+    protected List <string> enemyAnimations;
 
     [SerializeField]
     private GameObject playerObject;
     [SerializeField]
-    private Transform player;
+    protected Transform player;
     [SerializeField]
-    private Vector2 movement;
+    protected Vector2 movement;
     [SerializeField]
-    private float moveEnemySpeed = 2f;
-    
-    private int damage;
-    private float damaged = 0.5f;
-    private float range = 2.0f;
-    private bool inAction = false;
-    private bool inRange = false;
-    private bool isDead = false;
+    protected float moveEnemySpeed = 2f;
+    [SerializeField]
+    protected float attackDuration;
 
-    void Awake() {
+    protected int damage;
+    protected float damaged = 0.5f;
+    protected float range = 2.0f;
+    protected bool inAction = false;
+    protected bool inRange = false;
+    protected bool isDead = false;
+
+    protected void Awake() {
         enemyStats = enemyObject.GetComponent<Stats>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
@@ -44,11 +46,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         player = playerObject.GetComponent<Transform>();
     }
 
-    void Start() {
+    protected void Start() {
         damage = playerObject.GetComponent<Stats>().damage;
     }
 
-    void Update() {
+    public virtual void Update() {
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movement = direction;
@@ -58,11 +60,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         checkInRange();
     }
 
-    private void FixedUpdate() {
+    protected void FixedUpdate() {
         if (!inAction && damaged >= 0.5f) moveEnemy(movement);
     }
 
-    void moveEnemy(Vector2 direction) {
+    protected void moveEnemy(Vector2 direction) {
         if (direction.x > 0) {
             enemyObject.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }
@@ -77,12 +79,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
             spriteRendererEnemy.sortingOrder = 1;
         }
 
-        //animatorEnemy.Play("BasicEnemyWalk");
         animatorEnemy.Play(enemyAnimations[0]);
         rigidbodyEnemy.MovePosition((Vector2)transform.position + (Vector2)(direction * moveEnemySpeed * Time.deltaTime));
     }
 
-    void checkInRange() {
+    protected void checkInRange() {
         if (Vector3.Distance(player.position, transform.position) >= range) {
             inRange = false;
             rigidbodyEnemy.constraints = RigidbodyConstraints2D.None;
@@ -90,34 +91,31 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         }
     }
 
-    void OnTriggerEnter2D(Collider2D playerObject) {
+    protected void OnTriggerEnter2D(Collider2D playerObject) {
         inRange = true;
         rigidbodyEnemy.constraints = RigidbodyConstraints2D.FreezeAll;
         if (playerObject.name == "PlayerAttack" && !isDead) StartCoroutine(takeDamage(damage));
     }
 
-    IEnumerator delayCall() {
+    protected IEnumerator delayCall() {
         inAction = true;
-        //animatorEnemy.Play("BasicEnemyIdle");
         animatorEnemy.Play(enemyAnimations[1]);
         yield return new WaitForSeconds(0.5f);
         if (inRange && damaged >= 0.5f) StartCoroutine(attackPlayer());
         else inAction = false;
     }
 
-    IEnumerator attackPlayer() {
+    protected IEnumerator attackPlayer() {
 
         if (Random.Range(1,3) == 1) {
-            //animatorEnemy.Play("BasicEnemyPunch");
             animatorEnemy.Play(enemyAnimations[4]);
         }
         else {
-            //animatorEnemy.Play("BasicEnemyJab");
             animatorEnemy.Play(enemyAnimations[5]);
         }
         
         enemyAttack.size = new Vector2(1.5f,0.1f);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(attackDuration);
         enemyAttack.size = new Vector2(0.0001f,0.0001f);
         
         inAction = false;
@@ -128,13 +126,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         isDead = enemyStats.takeDamage(amount);
 
         if (isDead) {
-            //animatorEnemy.Play("BasicEnemyFaint");
             animatorEnemy.Play(enemyAnimations[2]);
             damaged = -1f;
             StartCoroutine(enemyStats.fadeOut());
         }
         else {
-            //animatorEnemy.Play("BasicEnemyHurt");
             animatorEnemy.Play(enemyAnimations[3]);
             yield return new WaitForSeconds(0.2f);
         }

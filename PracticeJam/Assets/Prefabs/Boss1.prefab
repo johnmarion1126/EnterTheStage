@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 177339086583737494}
   - component: {fileID: 177339086583737493}
-  - component: {fileID: 177339086583737495}
   - component: {fileID: 1175023542858564858}
   - component: {fileID: 4873965935380654631}
   - component: {fileID: 3235124498413865913}
   - component: {fileID: 3797710520676221840}
   - component: {fileID: 2734934336461200398}
+  - component: {fileID: 848065134}
   m_Layer: 0
   m_Name: Boss1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,34 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &177339086583737495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177339086583737492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a442b334eecd3649812dad5c7d6495e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbodyEnemy: {fileID: 1175023542858564858}
-  animatorEnemy: {fileID: 0}
-  spriteRendererEnemy: {fileID: 177339086583737493}
-  enemyStats: {fileID: 3797710520676221840}
-  enemyObject: {fileID: 177339086583737492}
-  enemyAttack: {fileID: 3235124499345524391}
-  enemyAnimations:
-  - Boss1Walk
-  - Boss1Idle
-  - Boss1Faint
-  - Boss1Hurt
-  - Boss1HeadButt
-  playerObject: {fileID: 0}
-  player: {fileID: 0}
-  movement: {x: 0, y: 0}
-  moveEnemySpeed: 2
 --- !u!50 &1175023542858564858
 Rigidbody2D:
   serializedVersion: 4
@@ -203,9 +175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02f7c9dcafe5cb4c86db78b0540f277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 5
-  currentHP: 5
-  damage: 1
+  maxHP: 8
+  currentHP: 8
+  damage: 2
   spriteRenderer: {fileID: 177339086583737493}
   unit: {fileID: 177339086583737492}
 --- !u!95 &2734934336461200398
@@ -227,6 +199,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &848065134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177339086583737492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1267c273301f464f801f93171bb32b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbodyEnemy: {fileID: 1175023542858564858}
+  animatorEnemy: {fileID: 0}
+  spriteRendererEnemy: {fileID: 177339086583737493}
+  enemyStats: {fileID: 3797710520676221840}
+  enemyObject: {fileID: 177339086583737492}
+  enemyAttack: {fileID: 3235124499345524391}
+  enemyAnimations:
+  - Boss1Walk
+  - Boss1Idle
+  - Boss1Faint
+  - Boss1Hurt
+  - Boss1HeadButt
+  - Boss1HeadButt
+  playerObject: {fileID: 0}
+  player: {fileID: 0}
+  movement: {x: 0, y: 0}
+  moveEnemySpeed: 2
+  attackDuration: 0.6
 --- !u!1 &2520898847591787888
 GameObject:
   m_ObjectHideFlags: 0
