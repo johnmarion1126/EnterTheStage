@@ -29,9 +29,6 @@ public class EnemySpawner : MonoBehaviour
             differenceInPosition = 0.0f;
             startingPosition = playerPosition;
             StartCoroutine(spawnEnemies());
-            if (numberOfEnemies >= 4) {
-                Instantiate(enemyObjects[enemyObjects.Count-1], new Vector3(playerPosition+20.0f, 1f, 0f), Quaternion.identity);
-            }
         }
     }
 
@@ -44,6 +41,10 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemyObject, spawnPosition, Quaternion.identity);
 
             if (i % 2 == 1) yield return new WaitForSeconds(2.0f);
+        }
+        if (numberOfEnemies >= 4) {
+            yield return new WaitForSeconds(2.0f);
+            Instantiate(enemyObjects[enemyObjects.Count-1], new Vector3(playerPosition+25.0f, 1f, 0f), Quaternion.identity);
         }
     }
 }
