@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class LevelTransition : MonoBehaviour
 {
     [SerializeField]
-    private GameObject HPScore;
+    private string scene;
     [SerializeField]
-    private Image blackScreen;
-    private HP hpScript;
+    private GameObject blackScreen;
+    [SerializeField]
+    private Image screenImage;
+    private BlackScreen screen;
 
     void Awake() {
-        hpScript = HPScore.GetComponent<HP>();
+        screen = screenImage.GetComponent<BlackScreen>();
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -23,11 +25,9 @@ public class LevelTransition : MonoBehaviour
     }
 
     IEnumerator transitionLevel() {
-        StartCoroutine(hpScript.fadeOutScreen());
+        StartCoroutine(screen.fadeOutScreen());
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene("LevelTwo");
+        SceneManager.LoadScene(scene);
     }
 
-    //TODO: SEPARATE HP AND FADE TRANSITIONS FROM HP SCRIPT
-    //TODO: ADD MOVEMENT SPEED TO STATS
 }

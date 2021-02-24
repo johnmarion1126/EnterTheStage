@@ -947,10 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 244506712}
-  blackOutScreen: {fileID: 1008062343}
-  blackOutText: {fileID: 1091211847}
-  sceneLevel: TestScene
-  startMenu: StartMenu
+  blackScreen: {fileID: 1008062341}
 --- !u!114 &574973308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,8 +1056,9 @@ GameObject:
   - component: {fileID: 1008062342}
   - component: {fileID: 1008062344}
   - component: {fileID: 1008062343}
+  - component: {fileID: 1008062345}
   m_Layer: 5
-  m_Name: BlackOutScreen
+  m_Name: BlackScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,6 +1121,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008062341}
   m_CullTransparentMesh: 1
+--- !u!114 &1008062345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008062341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4910a180a4726024bb696d5c539b7e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackScreen: {fileID: 1008062343}
+  gameOverText: {fileID: 1091211847}
+  sceneLevel: LevelOne
+  startMenu: StartMenu
 --- !u!1 &1011884658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,8 +1207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a12a7561fb78c548a4744c87262269f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPScore: {fileID: 574973302}
-  blackScreen: {fileID: 1008062343}
+  scene: LevelTwo
+  blackScreen: {fileID: 1008062341}
+  screenImage: {fileID: 1008062343}
 --- !u!1 &1082651360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1284,7 @@ GameObject:
   - component: {fileID: 1091211848}
   - component: {fileID: 1091211847}
   m_Layer: 5
-  m_Name: BlackOutText
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

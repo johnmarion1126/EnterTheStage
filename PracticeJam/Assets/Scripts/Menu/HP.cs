@@ -9,65 +9,11 @@ public class HP : MonoBehaviour
     [SerializeField]
     private Text hpText;
     [SerializeField]
-    private Image blackOutScreen;
-    [SerializeField]
-    private Text blackOutText;
+    private GameObject blackScreen;
+    private BlackScreen screen;
 
-    [SerializeField]
-    private string sceneLevel;
-    [SerializeField]
-    private string startMenu;
-
-    private bool isGamePaused = false;
-
-    public void Awake() {
-        blackOutScreen.canvasRenderer.SetAlpha(1.0f);
-    }
-
-    public void Start() {
-        blackOutScreen.CrossFadeAlpha(0,2,false);
-        blackOutText.CrossFadeAlpha(0,0,false);
-    }
-
-    public void Update() {
-        if (isGamePaused) {
-            if (Input.GetKey("z")) {
-                ContinueGame();
-                SceneManager.LoadScene(sceneLevel);
-            }
-            else if (Input.GetKey("x")) {
-                ContinueGame();
-                SceneManager.LoadScene(startMenu);
-            }
-        }
-    }
-
-    public IEnumerator blackOut() {
-        StartCoroutine(fadeOutScreen());
-        StartCoroutine(showOptions());
-        yield return new WaitForSeconds(3.0f);
-        PauseGame();
-        
-    }
-
-    public IEnumerator fadeOutScreen() {
-        blackOutScreen.CrossFadeAlpha(1,2,false);
-        yield return new WaitForSeconds(1.0f);
-    }
-
-    public IEnumerator showOptions() {
-        blackOutText.CrossFadeAlpha(1,2,false);
-        yield return new WaitForSeconds(1.0f);
-    }
-
-    private void PauseGame() {
-        Time.timeScale = 0;
-        isGamePaused = true;
-    }
-
-    private void ContinueGame() {
-        Time.timeScale = 1;
-        isGamePaused = false;
+    void Awake() {
+        screen = blackScreen.GetComponent<BlackScreen>();
     }
 
     public void setHP(int amount) {
@@ -82,7 +28,7 @@ public class HP : MonoBehaviour
             hpText.text = hpText.text.Substring(0, hpText.text.Length - 1);
         }
         
-        if (hpText.text == "HP") StartCoroutine(blackOut());
+        if (hpText.text == "HP") StartCoroutine(screen.blackOut());
     }
 
     public IEnumerator healHP(int amount) {
