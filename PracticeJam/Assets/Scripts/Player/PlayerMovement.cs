@@ -82,7 +82,6 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy") {
             enemyCollision = collision.gameObject.transform.GetChild(1).gameObject;
             Physics2D.IgnoreCollision(enemyCollision.GetComponent<Collider2D>(), playerObject.GetComponent<Collider2D>());

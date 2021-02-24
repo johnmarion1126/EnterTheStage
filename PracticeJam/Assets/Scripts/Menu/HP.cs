@@ -20,6 +20,15 @@ public class HP : MonoBehaviour
 
     private bool isGamePaused = false;
 
+    public void Awake() {
+        blackOutScreen.canvasRenderer.SetAlpha(1.0f);
+    }
+
+    public void Start() {
+        blackOutScreen.CrossFadeAlpha(0,2,false);
+        blackOutText.CrossFadeAlpha(0,0,false);
+    }
+
     public void Update() {
         if (isGamePaused) {
             if (Input.GetKey("z")) {
@@ -33,9 +42,32 @@ public class HP : MonoBehaviour
         }
     }
 
-    public void Start() {
-        blackOutScreen.CrossFadeAlpha(0,0,false);
-        blackOutText.CrossFadeAlpha(0,0,false);
+    public IEnumerator blackOut() {
+        StartCoroutine(fadeOutScreen());
+        StartCoroutine(showOptions());
+        yield return new WaitForSeconds(3.0f);
+        PauseGame();
+        
+    }
+
+    public IEnumerator fadeOutScreen() {
+        blackOutScreen.CrossFadeAlpha(1,2,false);
+        yield return new WaitForSeconds(1.0f);
+    }
+
+    public IEnumerator showOptions() {
+        blackOutText.CrossFadeAlpha(1,2,false);
+        yield return new WaitForSeconds(1.0f);
+    }
+
+    private void PauseGame() {
+        Time.timeScale = 0;
+        isGamePaused = true;
+    }
+
+    private void ContinueGame() {
+        Time.timeScale = 1;
+        isGamePaused = false;
     }
 
     public void setHP(int amount) {
@@ -60,21 +92,4 @@ public class HP : MonoBehaviour
         }
     }
 
-    public IEnumerator blackOut() {
-        blackOutScreen.CrossFadeAlpha(1,2,false);
-        blackOutText.CrossFadeAlpha(1,2,false);
-        yield return new WaitForSeconds(3f);
-        PauseGame();
-        
-    }
-
-    private void PauseGame() {
-        Time.timeScale = 0;
-        isGamePaused = true;
-    }
-
-    private void ContinueGame() {
-        Time.timeScale = 1;
-        isGamePaused = false;
-    }
 }
