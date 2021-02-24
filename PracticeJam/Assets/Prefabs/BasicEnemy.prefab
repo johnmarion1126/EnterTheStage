@@ -233,6 +233,8 @@ MonoBehaviour:
   player: {fileID: 0}
   movement: {x: 0, y: 0}
   moveEnemySpeed: 2
+  attackDuration: 0.3
+  points: 100
 --- !u!50 &4371866282531126120
 Rigidbody2D:
   serializedVersion: 4

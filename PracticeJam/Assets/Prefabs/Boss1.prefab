@@ -229,6 +229,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   moveEnemySpeed: 2
   attackDuration: 0.6
+  points: 200
 --- !u!1 &2520898847591787888
 GameObject:
   m_ObjectHideFlags: 0

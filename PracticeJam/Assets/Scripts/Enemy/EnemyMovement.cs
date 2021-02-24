@@ -26,10 +26,17 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     protected Transform player;
     [SerializeField]
     protected Vector2 movement;
+
     [SerializeField]
     protected float moveEnemySpeed = 2f;
     [SerializeField]
     protected float attackDuration;
+    [SerializeField]
+    protected int points;
+
+    protected GameObject HPScore;
+    protected GameObject scoreObject;
+    protected Score score;
 
     protected int damage;
     protected float damaged = 0.5f;
@@ -42,11 +49,14 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         enemyStats = enemyObject.GetComponent<Stats>();
         rigidbodyEnemy = GetComponent<Rigidbody2D>();
         animatorEnemy = GetComponent<Animator>();
+        HPScore = GameObject.Find("HP&Score");
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Transform>();
     }
 
     protected void Start() {
+        scoreObject = HPScore.transform.GetChild(2).gameObject;
+        score = HPScore.GetComponent<Score>();
         damage = playerObject.GetComponent<Stats>().damage;
     }
 
@@ -128,6 +138,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         if (isDead) {
             animatorEnemy.Play(enemyAnimations[2]);
             damaged = -1f;
+            score.increaseScore(points);
             StartCoroutine(enemyStats.fadeOut());
         }
         else {
