@@ -320,7 +320,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -265}
-  m_SizeDelta: {x: 960, y: 81.36}
+  m_SizeDelta: {x: 895, y: 81.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &222061517
 BoxCollider2D:
@@ -828,6 +828,13 @@ MonoBehaviour:
   - {fileID: 3356149717314933510, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
   - {fileID: 6979823283393783925, guid: 86ec745c87ebaf345b10bd39c475b207, type: 3}
   - {fileID: 177339086583737492, guid: ffebb70d317b45b49b883b333477820e, type: 3}
+  dialogBox: {fileID: 279953116}
+  dialogList:
+  - 'Jose: You have some guts coming here!'
+  - 'Mike: You''re going to pay for that!'
+  - 'Pat: Best turn back now if you don''t want to get hurt.'
+  - 'Carl: Get him guys!.'
+  - 'BigBody: Boss said you can''t go any further.'
 --- !u!1 &574973302
 GameObject:
   m_ObjectHideFlags: 0

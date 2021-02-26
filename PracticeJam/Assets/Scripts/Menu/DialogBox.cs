@@ -16,5 +16,7 @@ public class DialogBox : MonoBehaviour
             dialogText.text += letter;
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
+        yield return new WaitForSeconds(2.0f);
+        dialogText.text = "";
     }
 }
