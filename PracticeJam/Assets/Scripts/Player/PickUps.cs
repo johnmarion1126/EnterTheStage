@@ -39,4 +39,8 @@ public class PickUps : MonoBehaviour
         }
     }
 
+    //TODO: FIX ENEMY AI, ENEMIES KEEP PUSHING EACH OTHER WHEN DYING
+    //TODO: ADD MORE DIALOG
+    //TODO: MAKE ENEMY DROP PICKUPS
+
 }

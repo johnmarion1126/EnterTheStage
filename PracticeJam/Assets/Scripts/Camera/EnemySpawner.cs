@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator spawnEnemies() {
         numberOfEnemies += 1;
-        StartCoroutine(dialog.typeDialog(dialogList[numberOfEnemies-1]));
+        dialog.addDialog(dialogList[numberOfEnemies-1]);
         for (int i = 0; i < numberOfEnemies; i++) {
             enemyObject = enemyObjects[Random.Range(0,enemyObjects.Count-1)];
             if (i % 2 == 0) spawnPosition = new Vector3(Random.Range(playerPosition+11.0f,playerPosition+15.0f),Random.Range(-2.0f,1.5f), 0f);
@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(4.0f);
             Instantiate(enemyObjects[enemyObjects.Count-1], new Vector3(playerPosition+20.0f, 1f, 0f), Quaternion.identity);
             yield return new WaitForSeconds(3.0f);
-            StartCoroutine(dialog.typeDialog(dialogList[numberOfEnemies]));
+            dialog.addDialog(dialogList[numberOfEnemies]);
         }
     }
 }

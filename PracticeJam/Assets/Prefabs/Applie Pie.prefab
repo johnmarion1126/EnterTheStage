@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: {fileID: 6191379975887563713}
-  foodName: Pie
+  foodName: Apple Pie
   healPoints: 4
   dialogBox: {fileID: 0}
   HP: {fileID: 0}
