@@ -21,6 +21,9 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     protected List <string> enemyAnimations;
 
     [SerializeField]
+    private List <GameObject> enemyDrops;
+
+    [SerializeField]
     private GameObject playerObject;
     [SerializeField]
     protected Transform player;
@@ -139,12 +142,18 @@ public class EnemyMovement : MonoBehaviour, IDamageable
             animatorEnemy.Play(enemyAnimations[2]);
             damaged = -1f;
             score.increaseScore(points);
+            StartCoroutine(dropItem());
             StartCoroutine(enemyStats.fadeOut());
         }
         else {
             animatorEnemy.Play(enemyAnimations[3]);
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public IEnumerator dropItem() {
+        yield return new WaitForSeconds(0.8f);
+        Instantiate(enemyDrops[Random.Range(0,1)], new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, 0f), Quaternion.identity);
     }
 
 }

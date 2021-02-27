@@ -22,6 +22,8 @@ public class PickUps : MonoBehaviour
     private string healDialog;
 
     void Awake() {
+        dialogBox = GameObject.Find("DialogBox");
+        HP = GameObject.Find("HP&Score");
         dialog = dialogBox.GetComponent<DialogBox>();
         playerHP = HP.GetComponent<HP>();
     }
@@ -34,13 +36,12 @@ public class PickUps : MonoBehaviour
         if (collider.name == "Player") {
             Destroy(food.GetComponent<BoxCollider2D>());
             food.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
-            playerHP.healHP(healPoints);
+            StartCoroutine(playerHP.healHP(healPoints));
             dialog.addDialog(healDialog);
         }
     }
 
     //TODO: FIX ENEMY AI, ENEMIES KEEP PUSHING EACH OTHER WHEN DYING
     //TODO: ADD MORE DIALOG
-    //TODO: MAKE ENEMY DROP PICKUPS
 
 }

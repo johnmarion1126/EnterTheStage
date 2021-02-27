@@ -229,8 +229,11 @@ MonoBehaviour:
   - BasicEnemyHurt
   - BasicEnemyPunch
   - BasicEnemyJab
-  playerObject: {fileID: 0}
-  player: {fileID: 0}
+  enemyDrops:
+  - {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
+  - {fileID: 5699851019032486212, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
+  playerObject: {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
+  player: {fileID: 5699851019032486232, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
   movement: {x: 0, y: 0}
   moveEnemySpeed: 2
   attackDuration: 0.3

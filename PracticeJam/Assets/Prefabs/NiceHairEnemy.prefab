@@ -229,6 +229,9 @@ MonoBehaviour:
   - NiceHairHurt
   - NiceHairPunch
   - NiceHairJab
+  enemyDrops:
+  - {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
+  - {fileID: 5699851019032486212, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
   playerObject: {fileID: 0}
   player: {fileID: 0}
   movement: {x: 0, y: 0}

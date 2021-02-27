@@ -7,13 +7,19 @@ using UnityEngine.SceneManagement;
 public class HP : MonoBehaviour
 {
     [SerializeField]
+    private GameObject playerObject;
+    private Stats stats;
+
+    [SerializeField]
     private Text hpText;
+
     [SerializeField]
     private GameObject blackScreen;
     private BlackScreen screen;
 
     void Awake() {
         screen = blackScreen.GetComponent<BlackScreen>();
+        stats = playerObject.GetComponent<Stats>();
     }
 
     public void setHP(int amount) {
@@ -33,6 +39,7 @@ public class HP : MonoBehaviour
 
     public IEnumerator healHP(int amount) {
         for (int i = 0; i < amount; i++) {
+            if (hpText.text.Length == 10) break;
             hpText.text += "I";
             yield return new WaitForSeconds(0.1f);
         }
