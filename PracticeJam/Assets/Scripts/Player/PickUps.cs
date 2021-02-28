@@ -34,14 +34,14 @@ public class PickUps : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.name == "Player") {
-            Destroy(food.GetComponent<BoxCollider2D>());
-            food.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
             StartCoroutine(playerHP.healHP(healPoints));
             dialog.addDialog(healDialog);
+            Destroy(food);
         }
     }
 
     //TODO: FIX ENEMY AI, ENEMIES KEEP PUSHING EACH OTHER WHEN DYING
     //TODO: ADD MORE DIALOG
-
+    //TODO: ADD SOME SOUND DESIGN
+    //TODO: ADD SOME MUSIC
 }

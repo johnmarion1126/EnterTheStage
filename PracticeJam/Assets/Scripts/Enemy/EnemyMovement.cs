@@ -41,6 +41,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     protected GameObject scoreObject;
     protected Score score;
 
+    protected int randomNum;
     protected int damage;
     protected float damaged = 0.5f;
     protected float range = 2.0f;
@@ -152,8 +153,13 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     }
 
     public IEnumerator dropItem() {
+        randomNum = Random.Range(0,6);
         yield return new WaitForSeconds(0.8f);
-        Instantiate(enemyDrops[Random.Range(0,1)], new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, 0f), Quaternion.identity);
+        if (randomNum < 2) {
+            Instantiate(enemyDrops[Random.Range(0,2)], 
+            new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, 0f),
+            Quaternion.identity);
+        }
     }
 
 }
