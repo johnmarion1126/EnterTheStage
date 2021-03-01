@@ -18,9 +18,9 @@ public class DialogBox : MonoBehaviour
             dialogText.text += letter;
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
-        if (dialogInQueue == 1) yield return new WaitForSeconds(1.5f);
-        dialogInQueue -= 1;
+        if (dialogInQueue == 1) yield return new WaitForSeconds(1.2f);
         dialogText.text = "";
+        dialogInQueue -= 1;
     }
 
     public void addDialog(string dialog) {

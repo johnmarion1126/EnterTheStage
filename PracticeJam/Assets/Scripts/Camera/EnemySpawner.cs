@@ -51,10 +51,10 @@ public class EnemySpawner : MonoBehaviour
             else spawnPosition = new Vector3(Random.Range(playerPosition-9.0f,playerPosition-12.0f),Random.Range(-2.0f,1.5f), 0f);
             Instantiate(enemyObject, spawnPosition, Quaternion.identity);
 
-            if (i % 2 == 1) yield return new WaitForSeconds(2.0f);
+            if (i % 2 == 1) yield return new WaitForSeconds(2.5f);
         }
         if (numberOfEnemies >= 4) {
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(4.5f);
             Instantiate(enemyObjects[enemyObjects.Count-1], new Vector3(playerPosition+20.0f, 1f, 0f), Quaternion.identity);
             yield return new WaitForSeconds(3.0f);
             dialog.addDialog(dialogList[numberOfEnemies]);

@@ -153,7 +153,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     }
 
     public IEnumerator dropItem() {
-        randomNum = Random.Range(0,6);
+        randomNum = Random.Range(0,7);
         yield return new WaitForSeconds(0.8f);
         if (randomNum < 2) {
             Instantiate(enemyDrops[Random.Range(0,2)], 
