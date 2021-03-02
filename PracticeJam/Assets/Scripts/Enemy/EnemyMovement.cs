@@ -12,11 +12,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     private SpriteRenderer spriteRendererEnemy;
 
     [SerializeField]
-    private Stats enemyStats;
-    [SerializeField]
     private GameObject enemyObject;
     [SerializeField]
     private BoxCollider2D enemyAttack;
+    [SerializeField]
+    protected Stats enemyStats;
     [SerializeField]
     protected List <string> enemyAnimations;
 
@@ -37,6 +37,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     [SerializeField]
     protected int points;
 
+    protected GameObject dialogBox;
+    protected DialogBox dialog;
     protected GameObject HPScore;
     protected GameObject scoreObject;
     protected Score score;
@@ -44,6 +46,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     protected int randomNum;
     protected int damage;
     protected float damaged = 0.5f;
+    protected float damagedDuration = 0.5f;
     protected float range = 2.0f;
     protected bool inAction = false;
     protected bool inRange = false;
@@ -56,6 +59,9 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         HPScore = GameObject.Find("HP&Score");
         playerObject = GameObject.Find("Player");
         player = playerObject.GetComponent<Transform>();
+
+        dialogBox = GameObject.Find("DialogBox");
+        dialog = dialogBox.GetComponent<DialogBox>();
     }
 
     protected void Start() {
@@ -69,13 +75,13 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         direction.Normalize();
         movement = direction;
 
-        if (damaged < 0.5f) damaged += Time.deltaTime;
-        if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
+        if (damaged < damagedDuration) damaged += Time.deltaTime;
+        if (inRange && !inAction && damaged >= damagedDuration) StartCoroutine(delayCall());
         checkInRange();
     }
 
     protected void FixedUpdate() {
-        if (!inAction && damaged >= 0.5f) moveEnemy(movement);
+        if (!inAction && damaged >= damagedDuration) moveEnemy(movement);
     }
 
     protected void moveEnemy(Vector2 direction) {
@@ -115,7 +121,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         inAction = true;
         animatorEnemy.Play(enemyAnimations[1]);
         yield return new WaitForSeconds(0.5f);
-        if (inRange && damaged >= 0.5f) StartCoroutine(attackPlayer());
+        if (inRange && damaged >= damagedDuration) StartCoroutine(attackPlayer());
         else inAction = false;
     }
 
@@ -140,6 +146,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         isDead = enemyStats.takeDamage(amount);
 
         if (isDead) {
+            enemyObject.GetComponent<Transform>().GetChild(1).gameObject.SetActive(false);
+            enemyObject.GetComponent<BoxCollider2D>().enabled = false;
             animatorEnemy.Play(enemyAnimations[2]);
             damaged = -1f;
             score.increaseScore(points);
@@ -156,7 +164,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         randomNum = Random.Range(0,7);
         yield return new WaitForSeconds(0.8f);
         if (randomNum < 2) {
-            Instantiate(enemyDrops[Random.Range(0,2)], 
+            Instantiate(enemyDrops[randomNum], 
             new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, 0f),
             Quaternion.identity);
         }

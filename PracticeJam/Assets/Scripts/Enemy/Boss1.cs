@@ -9,8 +9,12 @@ public class Boss1 : EnemyMovement
         direction.Normalize();
         movement = direction;
 
-        if (damaged < 0.5f) damaged += Time.deltaTime;
-        if (inRange && !inAction && damaged >= 0.5f) StartCoroutine(delayCall());
+        if (enemyStats.currentHP <= 5) {
+            dialog.addDialog("BigBody: I don't get paid enough for this.....");
+        }
+        if (damaged < damagedDuration) damaged += Time.deltaTime;
+        if (inRange && !inAction && damaged >= damagedDuration) StartCoroutine(delayCall());
         checkInRange();
     }
+
 }

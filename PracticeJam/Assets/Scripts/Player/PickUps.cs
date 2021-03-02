@@ -11,11 +11,8 @@ public class PickUps : MonoBehaviour
     [SerializeField]
     private int healPoints;
 
-    [SerializeField]
     private GameObject dialogBox;
     private DialogBox dialog;
-
-    [SerializeField]
     private GameObject HP;
     private HP playerHP;
 
@@ -40,8 +37,6 @@ public class PickUps : MonoBehaviour
         }
     }
 
-    //TODO: FIX ENEMY AI, ENEMIES KEEP PUSHING EACH OTHER WHEN DYING
-    //TODO: ADD MORE DIALOG
     //TODO: ADD SOME SOUND DESIGN
     //TODO: ADD SOME MUSIC
 }
