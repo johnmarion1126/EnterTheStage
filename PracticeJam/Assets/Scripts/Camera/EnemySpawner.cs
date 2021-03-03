@@ -54,9 +54,9 @@ public class EnemySpawner : MonoBehaviour
             if (i % 2 == 1) yield return new WaitForSeconds(2.5f);
         }
         if (numberOfEnemies >= 4) {
-            yield return new WaitForSeconds(4.5f);
-            Instantiate(enemyObjects[enemyObjects.Count-1], new Vector3(playerPosition+20.0f, 1f, 0f), Quaternion.identity);
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(4.0f);
+            Instantiate(enemyObjects[enemyObjects.Count-1], new Vector3(playerPosition+15.0f, 1f, 0f), Quaternion.identity);
+            yield return new WaitForSeconds(2.0f);
             dialog.addDialog(dialogList[numberOfEnemies]);
         }
     }
