@@ -42,6 +42,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     protected GameObject HPScore;
     protected GameObject scoreObject;
     protected Score score;
+    private GameObject soundManager;
+    private SoundManager sound;
 
     protected int randomNum;
     protected int damage;
@@ -62,6 +64,8 @@ public class EnemyMovement : MonoBehaviour, IDamageable
 
         dialogBox = GameObject.Find("DialogBox");
         dialog = dialogBox.GetComponent<DialogBox>();
+        soundManager = GameObject.Find("SoundManager");
+        sound = soundManager.GetComponent<SoundManager>();
     }
 
     protected void Start() {
@@ -133,7 +137,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         else {
             animatorEnemy.Play(enemyAnimations[5]);
         }
-        
+        sound.playSound("miss");
         enemyAttack.size = new Vector2(1.5f,0.1f);
         yield return new WaitForSeconds(attackDuration);
         enemyAttack.size = new Vector2(0.0001f,0.0001f);
@@ -149,6 +153,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
             enemyObject.GetComponent<Transform>().GetChild(1).gameObject.SetActive(false);
             enemyObject.GetComponent<BoxCollider2D>().enabled = false;
             animatorEnemy.Play(enemyAnimations[2]);
+            sound.playSound("faint");
             damaged = -1f;
             score.increaseScore(points);
             StartCoroutine(dropItem());
@@ -156,6 +161,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         }
         else {
             animatorEnemy.Play(enemyAnimations[3]);
+            sound.playSound("jab");
             yield return new WaitForSeconds(0.2f);
         }
     }

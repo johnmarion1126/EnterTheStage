@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     private HP playerHP;
     [SerializeField]
     private Score playerScore;
+    [SerializeField]
+    private GameObject soundManager;
+    private SoundManager sound;
 
     [SerializeField]
     private float moveSpeed = 5f; 
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour, IDamageable
         playerScore = playerScore.GetComponent<Score>();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+        sound = soundManager.GetComponent<SoundManager>();
     }
 
     void Start() {
@@ -91,6 +95,7 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     IEnumerator heroAction(string action) {
         inAction = true;
         animator.Play(action);
+        sound.playSound("miss");
 
         playerAttack.size = new Vector2(1.5f,0.1f);
         yield return new WaitForSeconds(0.3f);
@@ -106,10 +111,12 @@ public class PlayerMovement : MonoBehaviour, IDamageable
 
         if (isDead) {
             animator.Play("HeroFaint");
+            sound.playSound("faint");
             StartCoroutine(playerStats.fadeOut());
         }
         else {
             animator.Play("HeroHurt");
+            sound.playSound("jab");
             yield return new WaitForSeconds(0.3f);
             inAction = false;
         }

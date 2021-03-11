@@ -15,14 +15,18 @@ public class PickUps : MonoBehaviour
     private DialogBox dialog;
     private GameObject HP;
     private HP playerHP;
+    private GameObject soundManager;
+    private SoundManager sound;
 
     private string healDialog;
 
     void Awake() {
         dialogBox = GameObject.Find("DialogBox");
-        HP = GameObject.Find("HP&Score");
         dialog = dialogBox.GetComponent<DialogBox>();
+        HP = GameObject.Find("HP&Score");
         playerHP = HP.GetComponent<HP>();
+        soundManager = GameObject.Find("SoundManager");
+        sound = soundManager.GetComponent<SoundManager>();
     }
 
     void Start() {
@@ -31,12 +35,10 @@ public class PickUps : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.name == "Player") {
+            sound.playSound("pick");
             StartCoroutine(playerHP.healHP(healPoints));
             dialog.addDialog(healDialog);
             Destroy(food);
         }
     }
-
-    //TODO: ADD SOME SOUND DESIGN
-    //TODO: ADD SOME MUSIC
 }
