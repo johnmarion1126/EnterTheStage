@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField]
-    public AudioClip FaintSFX, PunchSFX, JabSFX, MissAttackSFX, HeavyImpactSFX, PickUpSFX;
+    public AudioClip FaintSFX, PunchSFX, JabSFX, MissAttackSFX, HeavyImpactSFX, PickUpSFX, PointsSFX;
 
     [SerializeField]
     public AudioSource audioSrc;
@@ -42,6 +42,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "pick":
                 audioSrc.PlayOneShot(PickUpSFX);
+                break;
+            case "point":
+                audioSrc.PlayOneShot(PointsSFX);
                 break;
         }
     }

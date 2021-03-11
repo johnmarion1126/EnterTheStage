@@ -155,9 +155,11 @@ public class EnemyMovement : MonoBehaviour, IDamageable
             animatorEnemy.Play(enemyAnimations[2]);
             sound.playSound("faint");
             damaged = -1f;
-            score.increaseScore(points);
             StartCoroutine(dropItem());
             StartCoroutine(enemyStats.fadeOut());
+            yield return new WaitForSeconds(1.0f);
+            score.increaseScore(points);
+            sound.playSound("point");
         }
         else {
             animatorEnemy.Play(enemyAnimations[3]);
