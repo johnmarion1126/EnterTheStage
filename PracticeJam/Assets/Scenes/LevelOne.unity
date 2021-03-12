@@ -742,7 +742,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c306c130dd18b44593f10b9ae4380f3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1735,7 +1735,7 @@ MonoBehaviour:
   playerHP: {fileID: 574973307}
   playerScore: {fileID: 574973308}
   soundManager: {fileID: 482316549}
-  moveSpeed: 5
+  moveSpeed: 5.8
 --- !u!50 &1765557057
 Rigidbody2D:
   serializedVersion: 4
