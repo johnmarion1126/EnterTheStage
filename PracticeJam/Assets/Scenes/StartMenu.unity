@@ -534,7 +534,7 @@ MonoBehaviour:
   title: {fileID: 496600652}
   playText: {fileID: 1806469217}
   fade: {fileID: 1062464126}
-  scene: TestScene
+  scene: LevelOne
 --- !u!1 &1062464125
 GameObject:
   m_ObjectHideFlags: 0
