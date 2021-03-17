@@ -47,9 +47,9 @@ public class TitleCard : MonoBehaviour
     }
 
     IEnumerator startSequence() {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.5f);
         title.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.5f);
         delay = true;
     }
 
