@@ -877,6 +877,8 @@ MonoBehaviour:
   HeavyImpactSFX: {fileID: 8300000, guid: c72ac49e190517b4986b5cac1a36ab27, type: 3}
   PickUpSFX: {fileID: 8300000, guid: 9609a9585c097194890de416949c3eb1, type: 3}
   PointsSFX: {fileID: 8300000, guid: 25e073e712ad4c44a9d15363fc15ba50, type: 3}
+  StartMenuSFX: {fileID: 8300000, guid: be2ff48b6ebd0104a9a046ea87a01c77, type: 3}
+  QuitSFX: {fileID: 8300000, guid: 59882f71e36bca94abdd6de1b9e6b32d, type: 3}
   audioSrc: {fileID: 482316551}
 --- !u!82 &482316551
 AudioSource:

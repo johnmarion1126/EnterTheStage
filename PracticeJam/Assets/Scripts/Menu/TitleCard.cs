@@ -14,11 +14,17 @@ public class TitleCard : MonoBehaviour
     private Image fade;
     [SerializeField]
     private string scene;
+
+    [SerializeField]
+    private GameObject soundManager;
+    private SoundManager sound;
     
     private bool inScene = false;
     private bool delay = false;
+    private int inputs = 0;
 
     void Awake() {
+        sound = soundManager.GetComponent<SoundManager>();
         fade.canvasRenderer.SetAlpha(1.0f);
         fadeIn();
     }
@@ -33,7 +39,11 @@ public class TitleCard : MonoBehaviour
             StartCoroutine(startPlay());
         }
 
-        if(Input.GetKey("z")) StartCoroutine(fadeOut());
+        if(Input.GetKey("z") && inputs < 1) {
+            inputs += 1;
+            sound.playSound("start");
+            StartCoroutine(fadeOut());
+        }
     }
 
     void fadeIn() {

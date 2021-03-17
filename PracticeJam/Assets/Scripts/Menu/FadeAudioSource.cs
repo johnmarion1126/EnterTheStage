@@ -18,33 +18,20 @@ public class FadeAudioSource : MonoBehaviour
     private float start;
 
     void Awake() {
-        StartCoroutine(fadeSourceIn());
+        StartCoroutine(fadeSource(targetVolume, startDuration));
     }
 
     void Update() {
-        if(Input.GetKey("z")) StartCoroutine(fadeSourceOut());
+        if(Input.GetKey("z")) StartCoroutine(fadeSource(0, endDuration));
     }
 
-    IEnumerator fadeSourceIn() {
+    IEnumerator fadeSource(float targetVolume, float duration) {
         currentTime = 0;
         start = audioSource.volume;
 
-        while (currentTime < startDuration) {
+        while (currentTime < duration) {
             currentTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / startDuration);
-            yield return null;
-        }
-
-        yield break;
-    }
-
-    IEnumerator fadeSourceOut() {
-        currentTime = 0;
-        start = audioSource.volume;
-
-        while (currentTime < endDuration) {
-            currentTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(start, 0, currentTime / endDuration);
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
 

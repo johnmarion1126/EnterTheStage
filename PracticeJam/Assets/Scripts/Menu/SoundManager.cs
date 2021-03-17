@@ -6,20 +6,12 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField]
     public AudioClip FaintSFX, PunchSFX, JabSFX, MissAttackSFX, HeavyImpactSFX, PickUpSFX, PointsSFX;
+    public AudioClip StartMenuSFX, QuitSFX;
 
     [SerializeField]
     public AudioSource audioSrc;
 
     void Start() {
-        /*
-        FaintSFX = Resources.Load<AudioClip>("FaintSFX");
-        PunchSFX = Resources.Load<AudioClip>("PunchSFX");
-        JabSFX = Resources.Load<AudioClip>("JabSFX");
-        MissAttackSFX = Resources.Load<AudioClip>("MissAttackSFX");
-        HeavyImpactSFX = Resources.Load<AudioClip>("HeavyImpactSFX");
-        PickUpSFX = Resources.Load<AudioClip>("PickUpSFX");
-        */
-
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -45,6 +37,12 @@ public class SoundManager : MonoBehaviour
                 break;
             case "point":
                 audioSrc.PlayOneShot(PointsSFX);
+                break;
+            case "start":
+                audioSrc.PlayOneShot(StartMenuSFX);
+                break;
+            case "quit":
+                audioSrc.PlayOneShot(QuitSFX);
                 break;
         }
     }
