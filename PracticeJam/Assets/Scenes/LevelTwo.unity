@@ -1725,6 +1725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lettersPerSecond: 15
+  dialogDuration: 1.2
   dialogText: {fileID: 621331593}
 --- !u!212 &1973197378
 SpriteRenderer:

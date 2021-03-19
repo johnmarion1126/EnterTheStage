@@ -8,8 +8,12 @@ public class DialogBox : MonoBehaviour
     [SerializeField]
     private int lettersPerSecond;
     [SerializeField]
+    private float dialogDuration;
+
+    [SerializeField]
     private Text dialogText;
     private int dialogInQueue = 0;
+
 
     public IEnumerator typeDialog(string dialog) {
         yield return new WaitForSeconds(0.2f);
@@ -18,7 +22,7 @@ public class DialogBox : MonoBehaviour
             dialogText.text += letter;
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
-        if (dialogInQueue == 1) yield return new WaitForSeconds(1.2f);
+        if (dialogInQueue == 1) yield return new WaitForSeconds(dialogDuration);
         dialogText.text = "";
         dialogInQueue -= 1;
     }

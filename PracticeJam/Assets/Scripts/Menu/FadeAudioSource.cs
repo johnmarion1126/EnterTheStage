@@ -22,7 +22,7 @@ public class FadeAudioSource : MonoBehaviour
     }
 
     void Update() {
-        if(Input.GetKey("z")) StartCoroutine(fadeSource(0, endDuration));
+        if(Input.GetKey("z")) StartCoroutine(fadeSource(0.0001f, endDuration));
     }
 
     IEnumerator fadeSource(float targetVolume, float duration) {
