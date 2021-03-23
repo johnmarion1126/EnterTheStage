@@ -1400,11 +1400,11 @@ MonoBehaviour:
   - {fileID: 177339086583737492, guid: ffebb70d317b45b49b883b333477820e, type: 3}
   dialogBox: {fileID: 1973197376}
   dialogList:
-  - 'Jose: You have some guts coming here!'
-  - 'Mike: You''re going to pay for that!'
-  - 'Pat: Best turn back now.'
-  - 'Carl: Get him guys!'
-  - 'Mac: Boss said you can''t go any further.'
+  - 'Dave: How did you get in?!'
+  - 'Matthew: This is my first day.'
+  - 'Brandon: I don''t get paid enough for this.'
+  - 'Jerome: Jerome''s in the house! Watch your mouth.'
+  - 'Otto: You smell like up dog.'
 --- !u!114 &1711148821
 MonoBehaviour:
   m_ObjectHideFlags: 0

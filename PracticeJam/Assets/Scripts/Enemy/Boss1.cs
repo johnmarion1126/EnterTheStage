@@ -10,7 +10,7 @@ public class Boss1 : EnemyMovement
         movement = direction;
 
         if (isDead) {
-            dialog.addDialog("Mac: I don't get paid enough for this...");
+            dialog.addDialog("Mac: Tell my family I love them...");
         }
         if (damaged < damagedDuration) damaged += Time.deltaTime;
         if (inRange && !inAction && damaged >= damagedDuration) StartCoroutine(delayCall());
