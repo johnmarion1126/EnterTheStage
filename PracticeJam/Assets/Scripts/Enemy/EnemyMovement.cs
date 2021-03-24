@@ -84,7 +84,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
         checkInRange();
     }
 
-    protected void FixedUpdate() {
+    public virtual void FixedUpdate() {
         if (!inAction && damaged >= damagedDuration) moveEnemy(movement);
     }
 

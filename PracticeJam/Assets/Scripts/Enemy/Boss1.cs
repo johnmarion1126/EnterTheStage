@@ -9,12 +9,13 @@ public class Boss1 : EnemyMovement
         direction.Normalize();
         movement = direction;
 
-        if (isDead) {
-            dialog.addDialog("Mac: Tell my family I love them...");
-        }
         if (damaged < damagedDuration) damaged += Time.deltaTime;
         if (inRange && !inAction && damaged >= damagedDuration) StartCoroutine(delayCall());
         checkInRange();
     }
+    //TODO: ADD SOME NEW MECHANIC FOR BOSS
+    //TODO: SPAWN NEW ENEMY AT THE END
+    //TODO: ADD A NEW SCRIPT FOR NEW ENEMY
+    //TODO: ADD A SAVE SYSTEM TO KEEP SCORE AND HP TO NEXT LEVELS
 
 }
