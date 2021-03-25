@@ -21,6 +21,9 @@ public class TitleCard : MonoBehaviour
     [SerializeField]
     private GameObject soundManager;
     private SoundManager sound;
+    [SerializeField]
+    private GameObject Music;
+    private FadeAudioSource music;
     
     private bool inScene = false;
     private bool delay = false;
@@ -29,6 +32,7 @@ public class TitleCard : MonoBehaviour
     void Awake() {
         sound = soundManager.GetComponent<SoundManager>();
         dialog = dialogBox.GetComponent<DialogBox>();
+        music = Music.GetComponent<FadeAudioSource>();
         fade.canvasRenderer.SetAlpha(1.0f);
         fadeIn();
     }
@@ -44,6 +48,7 @@ public class TitleCard : MonoBehaviour
         }
 
         if(Input.GetKey("z") && inputs < 1) {
+            music.fadeSourceOut(0.0001f);
             inputs += 1;
             sound.playSound("start");
             StartCoroutine(fadeOut());
@@ -56,7 +61,7 @@ public class TitleCard : MonoBehaviour
 
     IEnumerator fadeOut() {
         fade.CrossFadeAlpha(1,2,false);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3f);
         dialog.addDialog("They destroyed my car...");
         yield return new WaitForSeconds(4f);
         dialog.addDialog("Broke into my house...");

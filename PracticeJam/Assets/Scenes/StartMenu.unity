@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 239173053}
   startDuration: 5.5
-  endDuration: 5.5
+  endDuration: 0.5
   targetVolume: 0.75
 --- !u!1 &274602571
 GameObject:
@@ -742,6 +742,7 @@ MonoBehaviour:
   scene: LevelOne
   dialogBox: {fileID: 274602571}
   soundManager: {fileID: 1414473917}
+  Music: {fileID: 239173052}
 --- !u!1 &1062464125
 GameObject:
   m_ObjectHideFlags: 0
