@@ -16,14 +16,20 @@ public class BlackScreen : MonoBehaviour
     [SerializeField]
     private string startMenu;
 
+    [SerializeField]
+    private GameObject MusicManager;
+    private FadeAudioSource music;
+
+
     private bool isGamePaused = false;
 
     public void Awake() {
         blackScreen.canvasRenderer.SetAlpha(1.0f);
+        music = MusicManager.GetComponent<FadeAudioSource>();
     }
 
     public void Start() {
-        blackScreen.CrossFadeAlpha(0,2,false);
+        blackScreen.CrossFadeAlpha(0,1,false);
         gameOverText.CrossFadeAlpha(0,0,false);
     }
 
@@ -49,7 +55,8 @@ public class BlackScreen : MonoBehaviour
     }
 
     public IEnumerator fadeOutScreen() {
-        blackScreen.CrossFadeAlpha(1,2,false);
+        music.fadeSourceOut(0.0001f);
+        blackScreen.CrossFadeAlpha(1,1,false);
         yield return new WaitForSeconds(1.0f);
     }
 

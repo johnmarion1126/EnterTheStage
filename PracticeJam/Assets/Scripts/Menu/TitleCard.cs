@@ -64,7 +64,7 @@ public class TitleCard : MonoBehaviour
         yield return new WaitForSeconds(3f);
         dialog.addDialog("They destroyed my car...");
         yield return new WaitForSeconds(4f);
-        dialog.addDialog("Broke into my house...");
+        dialog.addDialog("Ruined my house...");
         yield return new WaitForSeconds(4f);
         dialog.addDialog("But this time...");
         yield return new WaitForSeconds(4f);

@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField]
     public AudioClip FaintSFX, PunchSFX, JabSFX, MissAttackSFX, HeavyImpactSFX, PickUpSFX, PointsSFX;
-    public AudioClip StartMenuSFX, QuitSFX;
+    public AudioClip StartMenuSFX, QuitSFX, DoorSFX;
 
     [SerializeField]
     public AudioSource audioSrc;
@@ -43,6 +43,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "quit":
                 audioSrc.PlayOneShot(QuitSFX);
+                break;
+            case "door":
+                audioSrc.PlayOneShot(DoorSFX);
                 break;
         }
     }

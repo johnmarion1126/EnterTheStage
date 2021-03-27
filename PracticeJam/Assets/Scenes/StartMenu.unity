@@ -959,6 +959,7 @@ MonoBehaviour:
   PointsSFX: {fileID: 8300000, guid: 25e073e712ad4c44a9d15363fc15ba50, type: 3}
   StartMenuSFX: {fileID: 8300000, guid: be2ff48b6ebd0104a9a046ea87a01c77, type: 3}
   QuitSFX: {fileID: 8300000, guid: 59882f71e36bca94abdd6de1b9e6b32d, type: 3}
+  DoorSFX: {fileID: 8300000, guid: 7c9357c480b93fc4788ebbe0cf00fbb7, type: 3}
   audioSrc: {fileID: 1414473919}
 --- !u!82 &1414473919
 AudioSource:

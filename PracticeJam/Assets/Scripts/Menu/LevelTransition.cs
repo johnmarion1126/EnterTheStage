@@ -13,9 +13,14 @@ public class LevelTransition : MonoBehaviour
     [SerializeField]
     private Image screenImage;
     private BlackScreen screen;
+    [SerializeField]
+    private GameObject SoundManager;
+    private SoundManager sound;
+
 
     void Awake() {
         screen = screenImage.GetComponent<BlackScreen>();
+        sound = SoundManager.GetComponent<SoundManager>();
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -25,8 +30,9 @@ public class LevelTransition : MonoBehaviour
     }
 
     IEnumerator transitionLevel() {
+        sound.playSound("door");
         StartCoroutine(screen.fadeOutScreen());
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(scene);
     }
 
