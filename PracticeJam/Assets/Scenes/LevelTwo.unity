@@ -1419,9 +1419,9 @@ MonoBehaviour:
   dialogBox: {fileID: 1973197376}
   dialogList:
   - 'Dave: How did you get in?!'
-  - 'Matthew: This is my first day.'
+  - 'Matthew: This is my first day. Go easy.'
   - 'Brandon: I don''t get paid enough for this.'
-  - 'Jerome: Jerome''s in the house! Watch your mouth.'
+  - 'Jerome: Watch your mouth!'
   - 'Otto: You smell like up dog.'
 --- !u!114 &1711148821
 MonoBehaviour:

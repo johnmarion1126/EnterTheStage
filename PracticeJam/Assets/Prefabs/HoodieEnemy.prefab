@@ -128,8 +128,8 @@ GameObject:
   - component: {fileID: 3066584312347886869}
   - component: {fileID: 1595768606624909910}
   - component: {fileID: 8747109441636248520}
-  - component: {fileID: 1595768606624909912}
   - component: {fileID: 1041486106244006527}
+  - component: {fileID: 242336696613482642}
   m_Layer: 0
   m_Name: HoodieEnemy
   m_TagString: Enemy
@@ -217,18 +217,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbodyEnemy: {fileID: 3066584312347886869}
-  animatorEnemy: {fileID: 1595768606624909912}
+  animatorEnemy: {fileID: 0}
   spriteRendererEnemy: {fileID: 4086523484251614586}
   enemyObject: {fileID: 4086523484251614587}
   enemyAttack: {fileID: 1595768607237801800}
   enemyStats: {fileID: 1041486106244006527}
   enemyAnimations:
-  - BasicEnemyWalk
-  - BasicEnemyIdle
-  - BasicEnemyFaint
-  - BasicEnemyHurt
-  - BasicEnemyPunch
-  - BasicEnemyJab
+  - HoodieWalk
+  - HoodieIdle
+  - HoodieFaint
+  - HoodieHurt
+  - HoodieIdle
+  - HoodieIdle
   enemyDrops:
   - {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
   - {fileID: 5699851019032486212, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
@@ -311,25 +311,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.357727, y: 0.3485543}
   m_EdgeRadius: 0
---- !u!95 &1595768606624909912
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086523484251614587}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8642761a5131cb44282ad550bf957607, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1041486106244006527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,3 +328,22 @@ MonoBehaviour:
   damage: 1
   spriteRenderer: {fileID: 4086523484251614586}
   unit: {fileID: 4086523484251614587}
+--- !u!95 &242336696613482642
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086523484251614587}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 859c7a8ab1b60714ea96ccad22db2e7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
