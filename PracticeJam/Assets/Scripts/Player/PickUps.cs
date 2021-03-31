@@ -30,7 +30,7 @@ public class PickUps : MonoBehaviour
     }
 
     void Start() {
-        healDialog = foodName + " heals you for " + healPoints.ToString() + " points!";
+        healDialog = foodName + " heals your HP!";
     }
 
     void OnTriggerEnter2D(Collider2D collider) {

@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour, IDamageable
     }
 
     void Start() {
-        playerHP.setHP(playerStats.currentHP);
-        playerScore.setScore(0);
+        playerHP.setHP();
+        playerScore.setScore();
     }
 
     void Update() {

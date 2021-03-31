@@ -36,6 +36,8 @@ public class BlackScreen : MonoBehaviour
     public void Update() {
         if (isGamePaused) {
             if (Input.GetKey("z")) {
+                PlayerPrefs.SetInt("score", 0);
+                PlayerPrefs.SetInt("hp", 8);
                 ContinueGame();
                 SceneManager.LoadScene(sceneLevel);
             }

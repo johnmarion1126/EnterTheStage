@@ -51,6 +51,8 @@ public class TitleCard : MonoBehaviour
             music.fadeSourceOut(0.0001f);
             inputs += 1;
             sound.playSound("start");
+            PlayerPrefs.SetInt("score",0);
+            PlayerPrefs.SetInt("hp", 8);
             StartCoroutine(fadeOut());
         }
     }
