@@ -1415,14 +1415,12 @@ MonoBehaviour:
   - {fileID: 3356149717314933510, guid: 1aa17664426fc1a4aadab1e75776525d, type: 3}
   - {fileID: 6979823283393783925, guid: 86ec745c87ebaf345b10bd39c475b207, type: 3}
   - {fileID: 177339086583737492, guid: ffebb70d317b45b49b883b333477820e, type: 3}
-  - {fileID: 4086523484251614587, guid: bfd000299f0fa474b8ee5a9db58b012f, type: 3}
   dialogBox: {fileID: 1973197376}
   dialogList:
   - 'Dave: How did you get in?!'
   - 'Matthew: This is my first day. Go easy.'
   - 'Brandon: I don''t get paid enough for this.'
   - 'Jerome: Watch your mouth!'
-  - 'Otto: You smell like up dog.'
 --- !u!114 &1711148821
 MonoBehaviour:
   m_ObjectHideFlags: 0
