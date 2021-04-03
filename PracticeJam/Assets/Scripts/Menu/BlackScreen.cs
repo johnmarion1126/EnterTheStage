@@ -29,7 +29,7 @@ public class BlackScreen : MonoBehaviour
     }
 
     public void Start() {
-        blackScreen.CrossFadeAlpha(0,1,false);
+        blackScreen.CrossFadeAlpha(0,2,false);
         gameOverText.CrossFadeAlpha(0,0,false);
     }
 

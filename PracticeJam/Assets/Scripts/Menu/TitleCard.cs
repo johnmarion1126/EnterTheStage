@@ -64,9 +64,9 @@ public class TitleCard : MonoBehaviour
     IEnumerator fadeOut() {
         fade.CrossFadeAlpha(1,2,false);
         yield return new WaitForSeconds(3f);
-        dialog.addDialog("They destroyed my car...");
+        dialog.addDialog("They wrecked my car...");
         yield return new WaitForSeconds(4f);
-        dialog.addDialog("Ruined my house...");
+        dialog.addDialog("Destroyed my house...");
         yield return new WaitForSeconds(4f);
         dialog.addDialog("But this time...");
         yield return new WaitForSeconds(4f);
