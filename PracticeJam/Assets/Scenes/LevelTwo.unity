@@ -590,7 +590,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 51ab20318ae5c954fa74035cf7df27df, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.75
-  m_Pitch: 0.95
+  m_Pitch: 0.9
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 2025277425}
   gameOverText: {fileID: 903849106}
-  sceneLevel: LevelOne
+  sceneLevel: LevelTwo
   startMenu: StartMenu
   MusicManager: {fileID: 381642084}
 --- !u!114 &2025277425
