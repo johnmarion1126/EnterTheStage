@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour, IDamageable
     private SpriteRenderer spriteRendererEnemy;
 
     [SerializeField]
-    private GameObject enemyObject;
+    protected GameObject enemyObject;
     [SerializeField]
     private BoxCollider2D enemyAttack;
     [SerializeField]

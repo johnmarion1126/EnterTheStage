@@ -20,7 +20,7 @@ public class FinalLevel : MonoBehaviour
     }
 
     void Start() {
-        enemy.GetComponent<EnemyMovement>().enabled = false;
+        enemy.GetComponent<HoodieEnemy>().enabled = false;
         player.GetComponent<PlayerMovement>().enabled = false;
         StartCoroutine(startScene());
         playerAnimator.Play("HeroIdle");
@@ -34,7 +34,7 @@ public class FinalLevel : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         dialog.addDialog("Otto: It all ends here.");
         yield return new WaitForSeconds(3.0f);
-        enemy.GetComponent<EnemyMovement>().enabled = true;
+        enemy.GetComponent<HoodieEnemy>().enabled = true;
         player.GetComponent<PlayerMovement>().enabled = true;
     }
 }

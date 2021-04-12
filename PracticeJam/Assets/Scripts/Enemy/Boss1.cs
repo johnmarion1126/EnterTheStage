@@ -13,9 +13,4 @@ public class Boss1 : EnemyMovement
         if (inRange && !inAction && damaged >= damagedDuration) StartCoroutine(delayCall());
         checkInRange();
     }
-    //TODO: ADD SOME NEW MECHANIC FOR BOSS
-    //TODO: SPAWN NEW ENEMY AT THE END
-    //TODO: ADD A NEW SCRIPT FOR NEW ENEMY
-    //TODO: ADD A SAVE SYSTEM TO KEEP SCORE AND HP TO NEXT LEVELS
-
 }

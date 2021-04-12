@@ -124,12 +124,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4086523484251614585}
   - component: {fileID: 4086523484251614586}
-  - component: {fileID: 4086523484251614584}
   - component: {fileID: 3066584312347886869}
   - component: {fileID: 1595768606624909910}
   - component: {fileID: 8747109441636248520}
   - component: {fileID: 1041486106244006527}
-  - component: {fileID: 242336696613482642}
+  - component: {fileID: 1418616183}
+  - component: {fileID: 1418616191}
   m_Layer: 0
   m_Name: HoodieEnemy
   m_TagString: Enemy
@@ -204,40 +204,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4086523484251614584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086523484251614587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a442b334eecd3649812dad5c7d6495e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbodyEnemy: {fileID: 3066584312347886869}
-  animatorEnemy: {fileID: 0}
-  spriteRendererEnemy: {fileID: 4086523484251614586}
-  enemyObject: {fileID: 4086523484251614587}
-  enemyAttack: {fileID: 1595768607237801800}
-  enemyStats: {fileID: 1041486106244006527}
-  enemyAnimations:
-  - HoodieWalk
-  - HoodieIdle
-  - HoodieFaint
-  - HoodieHurt
-  - HoodieKick
-  - HoodieKick
-  enemyDrops:
-  - {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
-  - {fileID: 5699851019032486212, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
-  playerObject: {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
-  player: {fileID: 5699851019032486232, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
-  movement: {x: 0, y: 0}
-  moveEnemySpeed: 2
-  attackDuration: 0.3
-  points: 100
 --- !u!50 &3066584312347886869
 Rigidbody2D:
   serializedVersion: 4
@@ -323,12 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02f7c9dcafe5cb4c86db78b0540f277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 3
-  currentHP: 3
-  damage: 1
+  maxHP: 5
+  currentHP: 5
+  damage: 2
   spriteRenderer: {fileID: 4086523484251614586}
   unit: {fileID: 4086523484251614587}
---- !u!95 &242336696613482642
+--- !u!95 &1418616183
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -347,3 +313,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1418616191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086523484251614587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127056554a3c6934197ad15986535d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbodyEnemy: {fileID: 3066584312347886869}
+  animatorEnemy: {fileID: 1418616183}
+  spriteRendererEnemy: {fileID: 4086523484251614586}
+  enemyObject: {fileID: 4086523484251614587}
+  enemyAttack: {fileID: 1595768607237801800}
+  enemyStats: {fileID: 1041486106244006527}
+  enemyAnimations:
+  - HoodieWalk
+  - HoodieIdle
+  - HoodieFaint
+  - HoodieHurt
+  - HoodieKick
+  - HoodieKick
+  enemyDrops: []
+  playerObject: {fileID: 6191379975887563713, guid: 2974994a60474e344bda938d5c48cb10, type: 3}
+  player: {fileID: 5699851019032486232, guid: 1c70989f566bec645af6cc13267cc3d9, type: 3}
+  movement: {x: 0, y: 0}
+  moveEnemySpeed: 2
+  attackDuration: 0.3
+  points: 200
+  dogObject: {fileID: 2158990234330003318, guid: 81936b20bdee8cc4396364f2b760f20c, type: 3}

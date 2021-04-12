@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &295786599
 RectTransform:
   m_ObjectHideFlags: 0
@@ -892,8 +892,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: HoodieEnemy
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 242336696613482642, guid: bfd000299f0fa474b8ee5a9db58b012f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd000299f0fa474b8ee5a9db58b012f, type: 3}
 --- !u!1 &1214515351
 GameObject:
@@ -1373,25 +1372,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4086523484251614587, guid: bfd000299f0fa474b8ee5a9db58b012f, type: 3}
   m_PrefabInstance: {fileID: 822124236}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1418616183
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418616182}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 859c7a8ab1b60714ea96ccad22db2e7b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1536825970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1715481559
 RectTransform:
   m_ObjectHideFlags: 0
