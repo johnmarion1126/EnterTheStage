@@ -36,6 +36,7 @@ public class Dog : MonoBehaviour
             music.fadeSourceOut(0.0001f);
             sound.playSound("pick");
             dogObject.GetComponent<SpriteRenderer>().enabled = false;
+            dogObject.GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(transitionToEnd());
         }
     }
