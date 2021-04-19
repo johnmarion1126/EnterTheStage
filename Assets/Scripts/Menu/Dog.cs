@@ -49,6 +49,5 @@ public class Dog : MonoBehaviour
         StartCoroutine(screen.fadeOutScreen());
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(scene);
-        Debug.Log("Hello");
     }
 }
